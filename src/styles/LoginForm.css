@@ -1,0 +1,134 @@
+/* * {
+    margin: 0;
+    padding: 0;
+} */
+
+/* .mainContent {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+} */
+
+.formContainer {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: fit-content;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    flex-direction: column;
+    max-height: 100vh;
+}
+
+.formContent {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.formLabel,
+.formInput {
+    display: block;
+}
+
+.formInput {
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+.formLabel,
+.formSubmit {
+    font-size: 1.15rem;
+}
+
+.formInput {
+    width: 300px;
+    height: 30px;
+    border-radius: 0px 10px 0 10px;
+}
+
+.formInput::placeholder {
+    padding: 10px;
+}
+
+.formSubmit,
+.signUp {
+    border-radius: 10px;
+    border: 0;
+    color: white;
+}
+
+.formSubmit {
+    padding: 5px 20px 5px 20px;
+    width: 200px;
+    align-self: center;
+    background-color: #1B263B;
+    margin-bottom: 5px;
+}
+
+.forgotPassword {
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.line {
+    height: 2px;
+    width: 80%;
+    background-color: black;
+    margin-bottom: 10px;
+}
+
+.signUp {
+    width: 100px;
+    padding: 5px 10px 5px 10px;
+    background-color: #415A77;
+}
+
+.formHeader {
+    margin-bottom: 25px;
+}
+
+.errorMsg {
+    background-color: red;
+    padding: 25px;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+    .mainContent {
+        flex-direction: column;
+        height: 100vh;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .formInput {
+        width: 90%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .formLabel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .formSubmit {
+        width: 60%;
+    }
+
+    .formContainer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
