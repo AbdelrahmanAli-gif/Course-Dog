@@ -1,16 +1,20 @@
-/* * {
-    margin: 0;
-    padding: 0;
-} */
+:root {
+    --background-color: #F1F1F1;
+    --font-color: #282828;
+    --footer-nav-color: #0D1B2A;
+    --main-color: #1B263B;
+    --sub-color: #415A77;
+    --disabled-color: #778DA9;
+}
 
-/* .mainContent {
+.mainContent {
     display: flex;
     height: 100vh;
     width: 100%;
     justify-content: center;
     align-items: center;
     gap: 5%;
-} */
+}
 
 .formContainer {
     background-color: white;
@@ -24,6 +28,7 @@
     padding-bottom: 2rem;
     flex-direction: column;
     max-height: 100vh;
+    width: 340px;
 }
 
 .formContent {
@@ -51,10 +56,7 @@
     width: 300px;
     height: 30px;
     border-radius: 0px 10px 0 10px;
-}
-
-.formInput::placeholder {
-    padding: 10px;
+    padding: 0px 10px;
 }
 
 .formSubmit,
@@ -68,14 +70,19 @@
     padding: 5px 20px 5px 20px;
     width: 200px;
     align-self: center;
-    background-color: #1B263B;
+    background-color: var(--main-color);
     margin-bottom: 5px;
 }
 
-.forgotPassword {
+.forgotPassword,
+.haveAccount {
     font-weight: 500;
     margin-bottom: 10px;
     text-align: center;
+    width: fit-content;
+    border: 0;
+    background: none;
+    align-self: center;
 }
 
 .line {
@@ -88,7 +95,7 @@
 .signUp {
     width: 100px;
     padding: 5px 10px 5px 10px;
-    background-color: #415A77;
+    background-color: var(--sub-color);
 }
 
 .formHeader {
@@ -96,12 +103,13 @@
 }
 
 .errorMsg {
-    background-color: red;
     padding: 25px;
     margin-bottom: 20px;
-    width: 100%;
+    width: 320px;
     text-align: center;
+    max-width: initial;
 }
+
 
 @media screen and (max-width: 600px) {
     .mainContent {

@@ -1,13 +1,9 @@
 import './App.css';
-import LoginForm from './components/LoginForm';
-// import SignUpForm from './components/SignUpForm';
-import LoginPage from './components/LoginPage'
+import MainPage from './components/MainPage'
 
 function App() {
   return (
-    // <SignUpForm />
-    // <LoginForm />
-    <LoginPage />
+    <MainPage />
   );
 }
 

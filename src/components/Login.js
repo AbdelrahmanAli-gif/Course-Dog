@@ -3,11 +3,11 @@ import Identity from "./Identity";
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthProvider";
 import axios from "../api/axios";
-// import { Router, Routes, Route, Link } from "react-router-dom";
-// import SignUpForm from './SignUpForm';
+import SignUp from "./SignUp";
+import ForgotPassword from "./ForgotPassword";
 
 
-function LoginForm() {
+function Login() {
     const LOGIN_URL = "auth/auth/token/login/"; // Backend Auth URL
 
     const { setAuth } = useContext(AuthContext);
@@ -18,6 +18,9 @@ function LoginForm() {
     const [pwd, setPwd] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
     const [success, setSuccess] = useState(false);
+    const [logIn, setLogIn] = useState(true);
+    const [signUp, setSignUp] = useState(false);
+    const [errorColor, setErrorColor] = useState("");
 
     useEffect(() => {
         userRef.current.focus();
@@ -26,6 +29,23 @@ function LoginForm() {
     useEffect(() => {
         // setErrorMsg('');
     }, [user, pwd])
+
+    useEffect(() =>{
+    }, [errorColor])
+
+    const handleErrorColor = (color) => {
+        setErrorColor(color);
+    }
+
+    const handleSignUp = () => {
+        setSignUp(true);
+        setLogIn(false);
+    }
+
+    const handleForgotPassword = () => {
+        setLogIn(false);
+        setSignUp(false);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,7 +59,6 @@ function LoginForm() {
                 }
             );
             const accessToken = response?.data?.auth_token;
-            console.log(accessToken);
             localStorage.setItem('authToken', accessToken)
             setAuth({ user, pwd });
             setUser("");
@@ -55,6 +74,7 @@ function LoginForm() {
             } else {
                 setErrorMsg("Login Failed");
             }
+            handleErrorColor('#FF3333');
             errorRef.current.focus();
             setUser('');
             setPwd('');
@@ -67,7 +87,7 @@ function LoginForm() {
                 <div>
                     <h1>Homepage</h1>
                 </div>
-            ) : (
+            ) : logIn ? (
                 <div className="mainContent">
                     <Identity />
                     <div className="formContainer">
@@ -75,6 +95,7 @@ function LoginForm() {
                             ref={errorRef}
                             className={errorMsg ? "errorMsg" : "offscreen"}
                             aria-live="assertive"
+                            style={{backgroundColor: errorColor}}
                         >
                             {errorMsg}
                         </p>
@@ -94,7 +115,6 @@ function LoginForm() {
                                 value={user}
                                 required
                             />
-
                             <label className="formLabel" htmlFor="password">
                                 Password
                             </label>
@@ -108,20 +128,23 @@ function LoginForm() {
                                 required
                             />
                             <input className="formSubmit" type="submit" value="Login" />
-                            <h5 className="forgotPassword">Forgot password?</h5>
-                            {/* <Link to="/forget-password" className="forgetPassword">Forgot password?</Link> */}
+                            <button className="forgotPassword" onClick={handleForgotPassword}>Forgot password?</button>
                         </form>
                         <div className="line"></div>
-                        <button className="signUp">Sign Up</button>
-                        {/* <Link to="/signup" className="signUp">Sign Up</Link> */}
+                        <button className="signUp" onClick={handleSignUp}>Sign Up</button>
                     </div>
-                    {/* <Routes> 
-                        <Route path="/signup" element={<SignUpForm />}></Route>
-                    </Routes>  */}
                 </div>
+            ) : signUp ? (
+                <>
+                    <SignUp />
+                </>
+            ) : (
+                <>
+                    <ForgotPassword />
+                </>
             )}
         </>
     );
 }
 
-export default LoginForm;
+export default Login;
