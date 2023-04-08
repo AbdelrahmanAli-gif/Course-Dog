@@ -60,15 +60,17 @@ function SignUp() {
             handleErrorColor('#4BB543');
         } catch (err) {
             if (err.response?.status === 400){
-                setErrorMsg('A user with that username already exists.');
+                // setErrorMsg('A user with that username already exists.');
+                const error = Object.values(err.response.data);
+                setErrorMsg(error);
             } else {
                 setErrorMsg("Failed");
             }
             errorRef.current.focus();
             handleErrorColor('#FF3333');
-            setUser('');
+            // setUser('');
             setPwd('');
-            setEmail('');
+            // setEmail('');
         }
     }
 
