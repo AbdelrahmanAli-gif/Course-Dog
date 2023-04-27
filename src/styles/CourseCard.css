@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+}
+
+.card {
+    width: 325px;
+    background-color: white;
+    border-radius: 5px;
+    transition: 0.25s;
+}
+
+.card:hover {
+    box-shadow: 2px 10px 10px -5px rgba(0,0,0,0.5);
+}
+
+.card-image-container {
+    height: 210px;
+}
+
+.card-image {
+    width: 100%;
+}
+
+.course-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 5px;
+}
+
+.course-info {
+    background-color: white;
+}
+
+.course-year {
+    color: gray;
+}
+
+.course-instructor {
+    color: darkgrey;
+    font-size: small;
+    font-weight: 500;
+}
+
+.platform-logo-container {
+    width: 40px;
+}
+
+.platform-logo {
+    width: 100%;
+}
