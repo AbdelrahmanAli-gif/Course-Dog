@@ -1,0 +1,48 @@
+.material-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+    background-color: white;
+    margin-top: 20px;
+    padding: 10px 10px;
+    border: 2px gainsboro solid;
+    transition: 0.25s;
+    border-radius: 5px;
+}
+
+.material-card:hover {
+    box-shadow: 2px 10px 10px -5px rgba(0,0,0,0.5);
+}
+
+.material-info {
+    display: flex;
+}
+
+.material-image-container, .platform-image-container {
+    width: 60px;
+    margin-right: 20px;
+}
+
+.file-image, .platform-image {
+    width: 100%;
+}
+
+.material-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.material-title {
+    font-weight: 600;
+}
+
+.material-provider {
+    font-weight: 400;
+}
+
+.material-date {
+    font-weight: 300;
+}

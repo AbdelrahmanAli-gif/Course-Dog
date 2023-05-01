@@ -1,12 +1,9 @@
-.container {
-    display: flex;
-}
-
 .card {
     width: 325px;
     background-color: white;
     border-radius: 5px;
     transition: 0.25s;
+    margin-top: 20px;
 }
 
 .card:hover {

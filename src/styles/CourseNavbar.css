@@ -1,0 +1,21 @@
+.course-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.course-navbar-title {
+    font-weight: 400;
+    color: gray;
+}
+
+.active {
+    color: black;
+}
+
+.line {
+    width: 90%;
+    height: 2px;
+    background-color: black;
+}

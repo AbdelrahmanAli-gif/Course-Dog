@@ -1,6 +1,8 @@
 import '../styles/CourseCard.css'
 
-function CourseCard(){
+import ClassroomLogo from '../assests/classroom.svg';
+
+function CourseCard(props){
     return (
         <div className="card">
             <div className='card-image-container'>
@@ -13,7 +15,7 @@ function CourseCard(){
                     <p className='course-instructor'>Dr. Godzilla</p>
                 </div>
                 <div className='platform-logo-container'>
-                    <img className='platform-logo' src={require('../assests/pngwing 1.png')} alt=''/>
+                    <img className='platform-logo' src={ClassroomLogo} alt=''/>
                 </div>
             </div>
         </div>
