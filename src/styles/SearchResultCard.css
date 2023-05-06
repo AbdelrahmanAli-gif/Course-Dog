@@ -1,5 +1,24 @@
 .result {
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
-    margin: 10px;
+    border: 2px gainsboro solid;
+    margin: 5px;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-search-result-instructor {
+    font-weight: 500;
+}
+
+.course-search-result-year {
+    font-weight: 400;
+}
+
+.course-search-result-platform-container {
+    width: 40px;
+}
+
+.course-search-result-platform-image {
+    width: 100%;
 }
