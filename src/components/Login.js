@@ -3,7 +3,7 @@ import Identity from "./Identity";
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthProvider";
 import axios from "../api/axios";
-import SignUp from "./SignUp";
+import OAuthSignUp from "./OAuthSignUp";
 import ForgotPassword from "./ForgotPassword";
 
 
@@ -136,7 +136,7 @@ function Login() {
                 </div>
             ) : signUp ? (
                 <>
-                    <SignUp />
+                    <OAuthSignUp />
                 </>
             ) : (
                 <>
