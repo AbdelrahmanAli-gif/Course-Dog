@@ -3,7 +3,8 @@ import Identity from "./Identity";
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthProvider";
 import axios from "../api/axios";
-import SignUp from "./SignUp";
+import { Link } from "react-router-dom";
+
 
 function ForgotPassword() {
     const FORGOT_PASSWORD_URL = 'auth/auth/users/reset_password/' // Backend Auth URL
@@ -14,7 +15,6 @@ function ForgotPassword() {
 
     const [email, setEmail] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
-    const [forgotPassword, setForgotPassword] = useState(true);
     const [errorColor, setErrorColor] = useState("");
 
     useEffect(() =>{
@@ -30,10 +30,6 @@ function ForgotPassword() {
 
     const handleErrorColor = (color) => {
         setErrorColor(color);
-    }
-
-    const handleSignUp = () => {
-        setForgotPassword(false);
     }
 
     const handleSubmit = async (e) => {
@@ -59,48 +55,40 @@ function ForgotPassword() {
 
     return (
         <>
-            {
-                forgotPassword ? (
-                    <div className="mainContent">
-                        <Identity />
-                        <div className="formContainer">
-                            <p
-                                ref={errorRef}
-                                className={errorMsg ? "errorMsg" : "offscreen"}
-                                aria-live="assertive"
-                                style={{backgroundColor: errorColor}}
-                            >
-                                {errorMsg}
-                            </p>
-                            <h1 className="formHeader">Forgot Password</h1>
-                            <form className="formContent" onSubmit={handleSubmit}>
-                                <label className="formLabel" htmlFor="email">
-                                    Email
-                                </label>
-                                <input
-                                    className="formInput"
-                                    placeholder="Enter your email"
-                                    type="email"
-                                    id="email"
-                                    ref={emailRef}
-                                    autoComplete="off"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    value={email}
-                                    required
-                                />
-                                <input className="formSubmit" type="submit" value="Send Reset Email" />
-                            </form>
-                            <div className="line"></div>
-                            <h6 className='haveAccount'>Don't have an account?</h6>
-                            <button className="signUp" onClick={handleSignUp}>Sign up</button>
-                        </div>
-                    </div>
-                ) : (
-                    <>
-                        <SignUp />
-                    </>
-                )
-            }
+            <div className="mainContent">
+                <Identity />
+                <div className="formContainer">
+                    <p
+                        ref={errorRef}
+                        className={errorMsg ? "errorMsg" : "offscreen"}
+                        aria-live="assertive"
+                        style={{backgroundColor: errorColor}}
+                    >
+                        {errorMsg}
+                    </p>
+                    <h1 className="formHeader">Forgot Password</h1>
+                    <form className="formContent" onSubmit={handleSubmit}>
+                        <label className="formLabel" htmlFor="email">
+                            Email
+                        </label>
+                        <input
+                            className="formInput"
+                            placeholder="Enter your email"
+                            type="email"
+                            id="email"
+                            ref={emailRef}
+                            autoComplete="off"
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            required
+                        />
+                        <input className="formSubmit" type="submit" value="Send Reset Email" />
+                    </form>
+                    <div className="line"></div>
+                    <h6 className='haveAccount'>Don't have an account?</h6>
+                    <Link to={'/sign-up'} className="signUp">Sign Up</Link>
+                </div>
+            </div>
         </>
     )
 }

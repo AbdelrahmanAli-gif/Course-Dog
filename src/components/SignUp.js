@@ -3,8 +3,7 @@ import Identity from "./Identity";
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthProvider";
 import axios from "../api/axios";
-import Login from './Login';
-
+import { Link } from "react-router-dom";
 
 function SignUp() {
     const SIGNUP_URL = 'auth/auth/users/';
@@ -18,7 +17,6 @@ function SignUp() {
     const [email, setEmail] = useState('');
     const [pwd, setPwd] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
-    const [signUp, setSignUp] = useState(true);
     const [errorColor, setErrorColor] = useState("");
 
     useEffect(() => {
@@ -34,10 +32,6 @@ function SignUp() {
 
     const handleErrorColor = (color) => {
         setErrorColor(color);
-    }
-
-    const handleLogIn = () => {
-        setSignUp(false);
     }
 
     const handleSubmit = async (e) => {
@@ -76,74 +70,66 @@ function SignUp() {
 
     return (
         <>
-            {
-                signUp ? (
-                    <div className="mainContent">
-                        <Identity />
-                        <div className="formContainer">
-                            <h1 className='formHeader'>Sign Up</h1>
-                            <p
-                                ref={errorRef}
-                                className={errorMsg ? "errorMsg" : "offscreen"}
-                                aria-live="assertive"
-                                style={{backgroundColor: errorColor}}
-                            >
-                                {errorMsg}
-                            </p>
-                            <form className='formContent' onSubmit={handleSubmit}>
-                                <label className="formLabel" htmlFor="username">
-                                    Username
-                                </label>
-                                <input
-                                    className="formInput"
-                                    placeholder="Enter your username"
-                                    type="text"
-                                    id="username"
-                                    ref={userRef}
-                                    autoComplete="off"
-                                    onChange={(e) => setUser(e.target.value)}
-                                    value={user}
-                                    required
-                                />
-                                <label className="formLabel" htmlFor="email">
-                                    Email
-                                </label>
-                                <input
-                                    className="formInput"
-                                    placeholder="Enter your email"
-                                    type="email"
-                                    id="email"
-                                    ref={emailRef}
-                                    autoComplete="off"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    value={email}
-                                    required
-                                />
-                                <label className="formLabel" htmlFor="password">
-                                    Password
-                                </label>
-                                <input
-                                    className="formInput"
-                                    type="password"
-                                    placeholder="Enter your password"
-                                    id="password"
-                                    onChange={(e) => setPwd(e.target.value)}
-                                    value={pwd}
-                                    required
-                                />
-                                <input className='formSubmit' type="submit" value="Sign Up" />
-                            </form>
-                            <div className="line"></div>
-                            <h6 className='haveAccount'>Already have an account?</h6>
-                            <button className="signUp" onClick={handleLogIn}>Sign in</button>
-                        </div>
-                    </div>
-                ) : (
-                    <>
-                        <Login />
-                    </>
-                )
-            }
+            <div className="mainContent">
+                <Identity />
+                <div className="formContainer">
+                    <h1 className='formHeader'>Sign Up</h1>
+                    <p
+                        ref={errorRef}
+                        className={errorMsg ? "errorMsg" : "offscreen"}
+                        aria-live="assertive"
+                        style={{backgroundColor: errorColor}}
+                    >
+                        {errorMsg}
+                    </p>
+                    <form className='formContent' onSubmit={handleSubmit}>
+                        <label className="formLabel" htmlFor="username">
+                            Username
+                        </label>
+                        <input
+                            className="formInput"
+                            placeholder="Enter your username"
+                            type="text"
+                            id="username"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setUser(e.target.value)}
+                            value={user}
+                            required
+                        />
+                        <label className="formLabel" htmlFor="email">
+                            Email
+                        </label>
+                        <input
+                            className="formInput"
+                            placeholder="Enter your email"
+                            type="email"
+                            id="email"
+                            ref={emailRef}
+                            autoComplete="off"
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            required
+                        />
+                        <label className="formLabel" htmlFor="password">
+                            Password
+                        </label>
+                        <input
+                            className="formInput"
+                            type="password"
+                            placeholder="Enter your password"
+                            id="password"
+                            onChange={(e) => setPwd(e.target.value)}
+                            value={pwd}
+                            required
+                        />
+                        <input className='formSubmit' type="submit" value="Sign Up" />
+                    </form>
+                    <div className="line"></div>
+                    <h6 className='haveAccount'>Already have an account?</h6>
+                    <Link to={'/'} className='signUp'>Sign in</Link>
+                </div>
+            </div>
         </>
     )
 }

@@ -35,23 +35,23 @@
     padding-left: 5%;
 }
 
-.identity {
+.navbar-identity {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.logo-container {
+.navbar-logo-container {
     width: 40px;
     border-radius: 100%;
     overflow: hidden;
 }
 
-.logo {
+.navbar-logo {
     width: 100%;
 }
 
-.title {
+.navbar-title {
     color: white;
     white-space: nowrap;
 }

@@ -1,11 +1,10 @@
-import Navbar from './Navbar';
 import CourseCard from './CourseCard';
 import '../styles/MyCourses.css';
 
 function MyCourses(){
+
     return(
         <div className='container'>
-            <Navbar />
             <div className='content'>
                 <h1 className='page-title'>MY COURSES</h1>
                 <div className='courses-container'>

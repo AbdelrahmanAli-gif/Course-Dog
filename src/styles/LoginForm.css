@@ -83,6 +83,7 @@
     border: 0;
     background: none;
     align-self: center;
+    text-decoration: none;
 }
 
 .line {
@@ -96,6 +97,8 @@
     width: 100px;
     padding: 5px 10px 5px 10px;
     background-color: var(--sub-color);
+    text-decoration: none;
+    text-align: center;
 }
 
 .formHeader {
