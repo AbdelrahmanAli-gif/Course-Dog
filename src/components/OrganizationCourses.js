@@ -70,19 +70,18 @@ function OrganizationCourses() {
             <div className='content'>
                 <div className='courses-btn-container'>
                     <h1 className='page-title'>FCAI-CU COURSES</h1>
-                    <Link className='courses-btn' to={'/user/my-courses'}>My Courses</Link>
+                    <Link className='courses-btn' to={'/my-courses'}>My Courses</Link>
                 </div>
                 <div className='courses-container'>
                     {
                         orgCourses.map((value) => {
                             return (
-                                <Link to={`/user/my-courses/${value.id}`} key={value.id}>
                                     <CourseCard
                                         subscribed = {findElement(value.id)}
-                                        cname = {value.name}
+                                        name = {value.name}
                                         description = {value.description}
+                                        key={value.id}
                                     />
-                                </Link>
                                 
                             );
                         })

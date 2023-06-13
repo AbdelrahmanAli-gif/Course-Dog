@@ -42,16 +42,16 @@ function MyCourses(){
             <div className='content'>
                 <div className='courses-btn-container'>
                     <h1 className='page-title'>MY COURSES</h1>
-                    <Link className='courses-btn' to={'/user/oraganization-courses'}>Organization Courses</Link>
+                    <Link className='courses-btn' to={'/oraganization-courses'}>Organization Courses</Link>
                 </div>
                 <div className='courses-container'>
                     {
                         courses.map((value) => {
                             return (
-                                <Link to={`/user/my-courses/${value.id}`} key={value.id} >
+                                <Link to={`/my-courses/${value.id}`} key={value.id} className='course-card'>
                                     <CourseCard
                                         subscribed = {true}
-                                        cname = {value.name}
+                                        name = {value.name}
                                         description = {value.description}
                                     />
                                 </Link>
@@ -61,7 +61,6 @@ function MyCourses(){
                     }
                 </div>
             </div>
-            
         </div>
     )
 }

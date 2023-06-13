@@ -7,42 +7,57 @@ import CoursePage from "./components/CoursePage";
 import Navbar from "./components/Navbar";
 import OrganizationCourses from "./components/OrganizationCourses";
 import App from "./App";
+import Guest from "./middleware/Guest";
+import User from "./middleware/User";
 
 const ROUTER = createBrowserRouter([
     {
         element: <App />,
         children: [
             {
-                path: '/',
-                element: <Login />
-            },
-            {
-                path: '/sign-up',
-                element: <OAuthSignUp />
-            },
-            {
-                path: '/forgot-password',
-                element: <ForgotPassword />
-            },
-            {
-                path: '/user',
-                element: <Navbar />,
+                element: <Guest />,
                 children: [
                     {
-                        path: 'my-courses',
-                        element: <MyCourses />
-                    },
-                    {
-                        path: 'oraganization-courses',
-                        element: <OrganizationCourses />
-                    },
-                    {
-                        path: 'my-courses/:id',
-                        element: <CoursePage />,
+                        element: <Navbar />,
+                        children: [
+                            {
+                                path: 'my-courses',
+                                element: <MyCourses />
+                            },
+                            {
+                                path: 'oraganization-courses',
+                                element: <OrganizationCourses />
+                            },
+                            {
+                                path: 'my-courses/:id',
+                                element: <CoursePage />,
+                            }
+                        ]
                     }
+                ]
+            },
+            {
+                element: <User />,
+                children: [
+                    {
+                        path: '/',
+                        element: <Login />
+                    },
+                    {
+                        path: '/sign-up',
+                        element: <OAuthSignUp />
+                    },
+                    {
+                        path: '/forgot-password',
+                        element: <ForgotPassword />
+                    },
                 ]
             }
         ]
+    },
+    {
+        path: '*',
+        element: <h1>Not Found</h1>
     }
 ]);
 

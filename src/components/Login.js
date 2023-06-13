@@ -61,7 +61,7 @@ function Login() {
             setAuthUser(accessToken);
             setAuth({ user, pwd });
             
-            navigate('/user/my-courses');
+            navigate('/my-courses');
         } catch (err) {
             if (!err?.response) {
                 setErrorMsg("No Server Response");

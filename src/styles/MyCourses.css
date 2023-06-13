@@ -27,3 +27,7 @@
     background-color: white;
     color: #282828;
 }
+
+.course-card {
+    text-decoration: none;
+}

@@ -9,6 +9,7 @@ import MaterialCard from "./MaterialCard";
 function CoursePage(props){
     const { id } = useParams();
     const [materials, setMaterials] = useState([]);
+    const [error, setError] = useState({});
     const user = getAuthUser();
 
     const GET_COURSE_MATERIALS = `courses/upload-material/${id}`;
@@ -31,30 +32,43 @@ function CoursePage(props){
                 config
             )
             setMaterials(response.data);
+            setError({
+                errorState: false,
+                errorMsg: ""
+            })
         }
-        catch(error){
-            console.log(error);
+        catch(err){
+            setError({
+                errorState: true,
+                errorMsg: err.message
+            })
         };
     }
 
     return (
-        <div className="container">
-            <div className="content">
-                <h1 className="page-title">THEORY OF COMPUTATIONS</h1>
-                <CourseNavbar />
-                <div className="materials-container">
-                    {
-                        materials.map((value) => {
-                            return (
-                                <MaterialCard
-                                    fileName = {value.file_name}
-                                />
-                            );
-                        })
-                    }
+        <>
+        {
+            !error.errorState ? (
+                <div className="container">
+                    <div className="content">
+                        <h1 className="page-title">THEORY OF COMPUTATIONS</h1>
+                        <CourseNavbar />
+                        <div className="materials-container">
+                            {
+                                materials.map((value) => {
+                                    return (
+                                        <MaterialCard
+                                            fileName = {value.file_name} key={value.id}
+                                        />
+                                    );
+                                })
+                            }
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            ): <h1>{error.errorMsg}</h1>
+        }
+        </>
     )
 }
 
