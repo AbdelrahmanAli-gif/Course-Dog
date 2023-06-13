@@ -5,6 +5,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import MyCourses from "./components/MyCourses";
 import CoursePage from "./components/CoursePage";
 import Navbar from "./components/Navbar";
+import OrganizationCourses from "./components/OrganizationCourses";
 import App from "./App";
 
 const ROUTER = createBrowserRouter([
@@ -30,6 +31,10 @@ const ROUTER = createBrowserRouter([
                     {
                         path: 'my-courses',
                         element: <MyCourses />
+                    },
+                    {
+                        path: 'oraganization-courses',
+                        element: <OrganizationCourses />
                     },
                     {
                         path: 'my-courses/:id',

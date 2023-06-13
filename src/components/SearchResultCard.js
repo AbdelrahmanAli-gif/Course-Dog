@@ -6,7 +6,7 @@ export function SearchResultCard({course}){
     return (
         <div className="result">
             <div className="course-search-result-info">
-                <h2>{course.courseName}</h2>
+                <h2 className="course-search-result-title">{course.courseName}</h2>
                 <h4 className="course-search-result-instructor">{course.instructor}</h4>
                 <h5 className="course-search-result-year">{course.semester}</h5>
             </div>

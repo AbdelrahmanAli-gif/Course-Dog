@@ -12,6 +12,7 @@
 
 .card-image-container {
     height: 210px;
+    position: relative;
 }
 
 .card-image {
@@ -44,5 +45,23 @@
 }
 
 .platform-logo {
+    width: 100%;
+}
+
+.course-subscribe {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #F1F1F1;
+    border: none;
+    padding: 2.5px 2.5px;
+    font-size: 20px;
+    border-radius: 100%;
+    width: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.course-subscribe-img {
     width: 100%;
 }

@@ -39,6 +39,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 125px;
 }
 
 .navbar-logo-container {
@@ -51,6 +52,11 @@
     width: 100%;
 }
 
+.user-logo {
+    width: 35px;
+    height: 35px;
+}
+
 .navbar-title {
     color: white;
     white-space: nowrap;
@@ -58,6 +64,8 @@
 
 .navbar-second-section {
     padding-right: 1%;
+    width: 50%;
+    justify-content: flex-end;
 }
 
 .search-field {
@@ -77,14 +85,15 @@
     border-radius: 0px 5px 5px 0px;
     outline: none;
     padding-left: 5px;
-    width: 80%;
+    width: clamp(100px, 20vw, 400px);
     position: relative;
 }
 
 .search-input-focus {
     border: none;
     outline: none;
-    width: 500px;
+    /* width: 400px; */
+    /* width: clamp(100px, 20vw, 400px); */
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -92,8 +101,8 @@
     background-color: white;
     position: absolute;
     top: 50px;
-    width: 525px;
+    /* width: 425px; */
+    width: clamp(125px, calc(20vw + 25px), 425px);
     max-height: 600px;
     overflow: auto;
-    /* padding: 0px 5px; */
 }

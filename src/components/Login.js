@@ -9,6 +9,7 @@ import { setAuthUser } from "../services/Storage";
 
 function Login() {
     const LOGIN_URL = "auth/auth/token/login/"; // Backend Auth URL
+    const LOAD_COURSES_URL = 'courses/load-courses/';
 
     const navigate = useNavigate();
 
@@ -48,8 +49,18 @@ function Login() {
                 }
             );
             const accessToken = response?.data?.auth_token;
+            const config = {
+                headers: { 
+                    'Authorization': `Token ${accessToken}`
+                }
+            };
+            axios.get(
+                LOAD_COURSES_URL,
+                config
+            );
             setAuthUser(accessToken);
             setAuth({ user, pwd });
+            
             navigate('/user/my-courses');
         } catch (err) {
             if (!err?.response) {

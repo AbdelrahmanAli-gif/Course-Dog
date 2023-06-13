@@ -76,8 +76,8 @@ function Navbar() {
                             }
                         </div>
                     </div>
-                    <div className='navbar-logo-container'>
-                        <img className='navbar-logo' src={UserIcon} alt='' />
+                    <div className='user-logo-container'>
+                        <img className='user-logo' src={UserIcon} alt='' />
                     </div>
                 </div>
             </div>
