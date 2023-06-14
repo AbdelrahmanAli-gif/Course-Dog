@@ -57,8 +57,9 @@ function CoursePage(props){
                             {
                                 materials.map((value) => {
                                     return (
-                                        <MaterialCard
-                                            fileName = {value.file_name} key={value.id}
+                                        <MaterialCard key={value.id}
+                                            fileName = {value.file_name}
+                                            fileLink = {value.file}
                                         />
                                     );
                                 })

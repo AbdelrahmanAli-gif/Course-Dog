@@ -35,8 +35,6 @@ function MyCourses(){
         };
     }
 
-    // getCourses();
-
     return(
         <div className='container'>
             <div className='content'>
@@ -48,14 +46,12 @@ function MyCourses(){
                     {
                         courses.map((value) => {
                             return (
-                                <Link to={`/my-courses/${value.id}`} key={value.id} className='course-card'>
-                                    <CourseCard
-                                        subscribed = {true}
-                                        name = {value.name}
-                                        description = {value.description}
-                                    />
-                                </Link>
-                                
+                                <CourseCard key={value.id}
+                                    subscribed = {true}
+                                    name = {value.name}
+                                    description = {value.description}
+                                    id = {value.id}
+                                />
                             );
                         })
                     }

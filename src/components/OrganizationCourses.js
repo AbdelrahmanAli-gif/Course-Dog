@@ -62,9 +62,6 @@ function OrganizationCourses() {
         return false;
     }
 
-    // getCourses();
-    // getOrgCourses();
-
     return (
         <div className='container'>
             <div className='content'>
@@ -76,19 +73,17 @@ function OrganizationCourses() {
                     {
                         orgCourses.map((value) => {
                             return (
-                                    <CourseCard
-                                        subscribed = {findElement(value.id)}
-                                        name = {value.name}
-                                        description = {value.description}
-                                        key={value.id}
-                                    />
-                                
+                                <CourseCard key={value.id}
+                                    subscribed = {findElement(value.id)}
+                                    name = {value.name}
+                                    description = {value.description}
+                                    id = {value.id}
+                                />
                             );
                         })
                     }
                 </div>
             </div>
-            
         </div>
     )
 }

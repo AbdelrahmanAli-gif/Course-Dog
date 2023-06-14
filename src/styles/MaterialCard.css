@@ -9,6 +9,7 @@
     border: 2px gainsboro solid;
     transition: 0.25s;
     border-radius: 5px;
+    text-decoration: none;
 }
 
 .material-card:hover {

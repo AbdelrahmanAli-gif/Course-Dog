@@ -4,6 +4,7 @@
     border-radius: 5px;
     transition: 0.25s;
     margin-top: 20px;
+    position: relative;
 }
 
 .card:hover {
@@ -12,7 +13,7 @@
 
 .card-image-container {
     height: 210px;
-    position: relative;
+    /* position: relative; */
 }
 
 .card-image {
@@ -64,4 +65,8 @@
 
 .course-subscribe-img {
     width: 100%;
+}
+
+.course-link {
+    text-decoration: none;
 }
