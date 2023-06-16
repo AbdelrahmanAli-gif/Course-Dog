@@ -19,3 +19,7 @@
     height: 2px;
     background-color: black;
 }
+
+.nav-link {
+    text-decoration: none;
+}

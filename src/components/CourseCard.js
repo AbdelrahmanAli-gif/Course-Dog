@@ -4,15 +4,44 @@ import Subscribe from '../assests/add.svg';
 import Unsubscribe from '../assests/remove.svg'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from '../api/axios';
+import { getAuthUser } from '../services/Storage';
 
 function CourseCard(props){
+    const SUBSCRIBTION_URL = `courses/manage-user-courses/${props.id}/`;
+    const user = getAuthUser();
 
     const [subscribtion, setSubscribtion] = useState(props.subscribed);
-    const handleSubscribtion = (e) => {
-        if (subscribtion){
-            setSubscribtion(false);
+
+    const config = {
+        headers: { 
+            'Authorization': `Token ${user}`
+        }
+    };
+
+    const handleSubscribtion = async () => {
+        if (!subscribtion){
+            try {
+                await axios.post(
+                    SUBSCRIBTION_URL,
+                    config
+                );
+                setSubscribtion(true);
+            }
+            catch(error){
+                console.log(error);
+            }
         } else {
-            setSubscribtion(true);
+            try {
+                await axios.delete(
+                    SUBSCRIBTION_URL,
+                    config
+                );
+                setSubscribtion(false);
+            }
+            catch(error){
+                console.log(error);
+            }
         }
     }
 
@@ -21,7 +50,7 @@ function CourseCard(props){
             <button className='course-subscribe' onClick={handleSubscribtion}>
                 <img className='course-subscribe-img' src={subscribtion ? Unsubscribe : Subscribe}/>
             </button>
-            <Link to={`/my-courses/${props.id}`} className='course-link'>
+            <Link to={`/my-courses/${props.id}/materials`} className='course-link'>
                 <div className='card-image-container'>
                     <img className="card-image" src={require('../assests/abstract-dark-blue-luxury-background-free-vector.jpg')} alt=""/>
                 </div>

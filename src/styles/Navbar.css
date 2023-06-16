@@ -106,3 +106,25 @@
     max-height: 600px;
     overflow: auto;
 }
+
+.user-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logout {
+    width: 17px;
+    background-color: #282828;
+    color: white;
+    border: none;
+}
+
+.logout:focus {
+    outline: none;
+}
+
+option {
+    background-color: white;
+    color: black;
+    font-size: 18px;
+}

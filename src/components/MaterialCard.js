@@ -37,10 +37,23 @@ function MaterialCard(props){
 
     var blob = new Blob([pdf], { type: 'application/pdf' });
     var blobURL = URL.createObjectURL(blob);
-    console.log(blobURL)
+
+    const handleDownload = () => {
+        const linkTag = document.createElement('a');
+        if (fileType === 'pdf'){
+            linkTag.setAttribute('href', blobURL);
+        } else {
+            linkTag.setAttribute('href', FILE_URL);
+            linkTag.setAttribute('download', true);
+        }
+        linkTag.setAttribute('target', '_blank');
+        document.body.appendChild(linkTag);
+        linkTag.click();
+        linkTag.remove();
+    }
 
     return (
-        <Link to={fileType === 'pdf'? blobURL : FILE_URL} target='_blank' className='material-card'>
+        <button className='material-card' onClick={handleDownload}>
             <div className='material-info'>
                 <div className='material-image-container'>
                     <img className='file-image' src={FileLogo} />
@@ -54,7 +67,7 @@ function MaterialCard(props){
             <div className='platform-image-container'>
                 <img className='platform-image' src={ClassroomLogo} />
             </div>
-        </Link>
+        </button>
     )
 }
 

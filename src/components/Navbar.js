@@ -5,10 +5,13 @@ import UserIcon from '../assests/user.svg';
 import { useEffect, useRef, useState } from 'react';
 import { CourseSearchService } from '../services/CourseSearchService';
 import { SearchResultCard } from './SearchResultCard';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { removeAuthUser } from '../services/Storage';
 
 function Navbar() {
     const searchService = new CourseSearchService()
+
+    const navigator = useNavigate();
 
     const [searchTerm, setSearchTerm] = useState("")
     const [searchResults, setSearchResults] = useState([])
@@ -39,6 +42,11 @@ function Navbar() {
             .then((data) => {
                 setSearchResults(data)
             })
+    }
+
+    const handleLogout = () => {
+        removeAuthUser();
+        navigator('/');
     }
 
     return (
@@ -78,6 +86,10 @@ function Navbar() {
                     </div>
                     <div className='user-logo-container'>
                         <img className='user-logo' src={UserIcon} alt='' />
+                        <select className='logout' onChange={handleLogout} defaultValue={''}>
+                            <option value={''} disabled hidden></option>
+                            <option>Logout</option>
+                        </select>
                     </div>
                 </div>
             </div>

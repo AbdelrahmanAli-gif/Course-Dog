@@ -3,7 +3,8 @@ import Login from "./components/Login";
 import OAuthSignUp from "./components/OAuthSignUp";
 import ForgotPassword from "./components/ForgotPassword";
 import MyCourses from "./components/MyCourses";
-import CoursePage from "./components/CoursePage";
+import MaterialsPage from "./components/MaterialsPage";
+import AnnouncementsPage from "./components/AnnouncementsPage";
 import Navbar from "./components/Navbar";
 import OrganizationCourses from "./components/OrganizationCourses";
 import App from "./App";
@@ -29,8 +30,12 @@ const ROUTER = createBrowserRouter([
                                 element: <OrganizationCourses />
                             },
                             {
-                                path: 'my-courses/:id',
-                                element: <CoursePage />,
+                                path: 'my-courses/:id/materials',
+                                element: <MaterialsPage />,
+                            },
+                            {
+                                path: 'my-courses/:id/announcements',
+                                element: <AnnouncementsPage />,
                             }
                         ]
                     }

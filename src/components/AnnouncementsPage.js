@@ -4,15 +4,16 @@ import { useParams } from "react-router-dom";
 import axios from '../api/axios';
 import { getAuthUser } from '../services/Storage';
 import { useState, useEffect } from 'react';
-import MaterialCard from "./MaterialCard";
+import AnnoundementCard from "./AnnouncementCard";
 
 function CoursePage(props){
     const { id } = useParams();
     const [materials, setMaterials] = useState([]);
+    const [courseName, setCourseName] = useState('');
     const [error, setError] = useState({});
     const user = getAuthUser();
 
-    const GET_COURSE_MATERIALS = `courses/upload-material/${id}`;
+    const GET_COURSE_ANNOUNCEMENTS = `announcements/manage-announcements/${id}/`;
 
     useEffect(() => {
         getMaterials();
@@ -28,10 +29,11 @@ function CoursePage(props){
 
         try {
             const response = await axios.get(
-                GET_COURSE_MATERIALS,
+                GET_COURSE_ANNOUNCEMENTS,
                 config
             )
-            setMaterials(response.data);
+            setCourseName(response.data['course']['name'])
+            setMaterials(response.data['announcements']);
             setError({
                 errorState: false,
                 errorMsg: ""
@@ -51,15 +53,16 @@ function CoursePage(props){
             !error.errorState ? (
                 <div className="container">
                     <div className="content">
-                        <h1 className="page-title">THEORY OF COMPUTATIONS</h1>
-                        <CourseNavbar />
+                        <h1 className="page-title">{courseName.toUpperCase()}</h1>
+                        <CourseNavbar activeMaterials={false}/>
                         <div className="materials-container">
                             {
                                 materials.map((value) => {
                                     return (
-                                        <MaterialCard key={value.id}
-                                            fileName = {value.file_name}
-                                            fileLink = {value.file}
+                                        <AnnoundementCard key={value.id}
+                                            announcement = {value.announcement}
+                                            id = {value.id}
+                                            title = {value.title}
                                         />
                                     );
                                 })
