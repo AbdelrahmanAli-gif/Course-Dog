@@ -40,7 +40,7 @@ function MyCourses(){
             <div className='content'>
                 <div className='courses-btn-container'>
                     <h1 className='page-title'>MY COURSES</h1>
-                    <Link className='courses-btn' to={'/oraganization-courses'}>Organization Courses</Link>
+                    <Link className='courses-btn' to={'/organization-courses'}>Organization Courses</Link>
                 </div>
                 <div className='courses-container'>
                     {

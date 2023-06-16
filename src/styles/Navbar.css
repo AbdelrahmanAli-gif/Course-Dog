@@ -4,6 +4,7 @@
     background-color: #282828;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     z-index: 2;
     height: 60px;
     width: 100%;
@@ -13,7 +14,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    margin-left: 20px;
+    width: 20%;
 }
 
 .navbar-button {
@@ -39,7 +41,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 125px;
+    /* width: 125px; */
 }
 
 .navbar-logo-container {
@@ -64,7 +66,7 @@
 
 .navbar-second-section {
     padding-right: 1%;
-    width: 50%;
+    width: 30%;
     justify-content: flex-end;
 }
 
@@ -127,4 +129,92 @@ option {
     background-color: white;
     color: black;
     font-size: 18px;
+}
+
+.links-section {
+    color: white;
+    display: flex;
+    width: 35%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.navbar-link {
+    color: white;
+    text-decoration: none;
+}
+
+.hamburger-icon-container {
+    width: 40px;
+    display: none;
+}
+
+.hamburger-icon{
+    width: 100%;
+}
+
+.mobile-navbar {
+    display: none;
+    position: absolute;
+    top: 60px;
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .links-section, .navbar-second-section{
+        display: none;
+    }
+
+    .navbar {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .hamburger-icon-container {
+        display: flex;
+        align-items: center;
+        background-color: inherit;
+        border: none;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+    }
+
+    .hamburger-icon {
+        filter: brightness(0) invert(1);
+    }
+
+    .mobile-navbar {
+        height: 200px;
+        background-color: #282828;
+    }
+
+    .mobile-navbar-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 80%;
+    }
+
+    .mobile-logout {
+        background-color: inherit;
+        border: none;
+        color: white;
+        font-size: 15.5px;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .search-field {
+        position: relative;
+    }
+
+    .search-results {
+        width: 100%;
+        position: absolute;
+        top: 35px;
+    }
 }

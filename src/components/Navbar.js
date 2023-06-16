@@ -2,13 +2,16 @@ import '../styles/Navbar.css'
 import Logo from '../assests/logo.svg';
 import SearchIcon from '../assests/search.svg';
 import UserIcon from '../assests/user.svg';
+import HamburgerMenu from '../assests/hamburger.svg';
+import Close from '../assests/close.svg';
 import { useEffect, useRef, useState } from 'react';
 import { CourseSearchService } from '../services/CourseSearchService';
 import { SearchResultCard } from './SearchResultCard';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { removeAuthUser } from '../services/Storage';
 
 function Navbar() {
+
     const searchService = new CourseSearchService()
 
     const navigator = useNavigate();
@@ -16,6 +19,8 @@ function Navbar() {
     const [searchTerm, setSearchTerm] = useState("")
     const [searchResults, setSearchResults] = useState([])
     const searchInputRef = useRef()
+
+    const [clicked, setClicked] = useState(false);
 
     useEffect(() => {
         initiateSearch()
@@ -44,6 +49,10 @@ function Navbar() {
             })
     }
 
+    const handleMobileNavbar = () => {
+        setClicked(!clicked);
+    }
+
     const handleLogout = () => {
         removeAuthUser();
         navigator('/');
@@ -61,6 +70,41 @@ function Navbar() {
                             <span className='navbar-title'>Course Dog</span>
                         </div>
                     </div>
+                </div>
+                <button className='hamburger-icon-container' onClick={handleMobileNavbar}>
+                    <img className='hamburger-icon' src={clicked ? Close : HamburgerMenu} />
+                </button>
+                <div className='mobile-navbar' style={clicked ? {display: 'block'} : {display: 'none'}}>
+                    <div className='mobile-navbar-list'>
+                        <Link className='navbar-link' to={'/my-courses'}>My Courses</Link>
+                        <Link className='navbar-link'to={'/organization-courses'}>Organization Courses</Link>
+                        <button className='mobile-logout' onClick={handleLogout}>Logout</button>
+                        <div className='search-field'>
+                            <div className='search-icon'>
+                                <img className='navbar-logo' src={SearchIcon} alt='' />
+                            </div>
+                            <input
+                                className='search-input'
+                                placeholder='Search'
+                                onChange={(event) => updateSearchTerm(event.target.value)}
+                                onBlur={() => handleSearchInputFocus(false)}
+                                onFocus={() => handleSearchInputFocus(true)}
+                                ref={searchInputRef}
+                                value={searchTerm}
+                            />
+                            <div className='search-results'>
+                                {
+                                    searchResults.map((result) => {
+                                        return <SearchResultCard course={result} className="result"/>
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='links-section'>
+                    <Link className='navbar-link' to={'/my-courses'}>My Courses</Link>
+                    <Link className='navbar-link'to={'/organization-courses'}>Organization Courses</Link>
                 </div>
                 <div className='navbar-second-section'>
                     <div className='search-field'>

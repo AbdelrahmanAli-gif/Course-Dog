@@ -26,7 +26,7 @@ const ROUTER = createBrowserRouter([
                                 element: <MyCourses />
                             },
                             {
-                                path: 'oraganization-courses',
+                                path: 'organization-courses',
                                 element: <OrganizationCourses />
                             },
                             {
