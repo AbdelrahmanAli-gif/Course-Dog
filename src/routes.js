@@ -12,6 +12,8 @@ import Guest from "./middleware/Guest";
 import User from "./middleware/User";
 import AddAnnouncement from "./components/AddAnnouncement";
 import AddMaterial from "./components/AddMaterial";
+import UserProfile from "./components/UserProfile";
+import EditProfile from "./components/EditProfile";
 
 const ROUTER = createBrowserRouter([
     {
@@ -30,6 +32,14 @@ const ROUTER = createBrowserRouter([
                             {
                                 path: 'organization-courses',
                                 element: <OrganizationCourses />
+                            },
+                            {
+                                path: 'profile',
+                                element: <UserProfile />
+                            },
+                            {
+                                path: 'profile/edit-profile',
+                                element: <EditProfile />
                             },
                             {
                                 path: 'my-courses/:id/materials',

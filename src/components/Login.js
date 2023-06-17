@@ -44,7 +44,7 @@ function Login() {
             const response = await axios.post(
                 LOGIN_URL,
                 {
-                    username: user,
+                    email: user,
                     password: pwd,
                 }
             );
@@ -95,12 +95,12 @@ function Login() {
                     <h1 className="formHeader">Sign in</h1>
                     <form className="formContent" onSubmit={handleSubmit}>
                         <label className="formLabel" htmlFor="username">
-                            Username
+                            Email
                         </label>
                         <input
                             className="formInput"
-                            placeholder="Enter your username"
-                            type="text"
+                            placeholder="Enter your email"
+                            type="email"
                             id="username"
                             ref={userRef}
                             autoComplete="off"

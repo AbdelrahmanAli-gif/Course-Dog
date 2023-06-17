@@ -114,6 +114,10 @@
     align-items: center;
 }
 
+.user-logo-btn {
+    text-decoration: none;
+}
+
 .logout {
     width: 17px;
     background-color: #282828;
@@ -216,5 +220,9 @@ option {
         width: 100%;
         position: absolute;
         top: 35px;
+    }
+
+    .navbar-list {
+        width: fit-content;
     }
 }

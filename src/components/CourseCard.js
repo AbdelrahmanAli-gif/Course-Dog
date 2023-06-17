@@ -7,30 +7,30 @@ import { Link } from 'react-router-dom';
 import axios from '../api/axios';
 import { getAuthUser } from '../services/Storage';
 
-function CourseCard(props){
+function CourseCard(props) {
     const SUBSCRIBTION_URL = `courses/manage-user-courses/${props.id}/`;
     const user = getAuthUser();
 
     const [subscribtion, setSubscribtion] = useState(props.subscribed);
 
     const config = {
-        headers: { 
+        headers: {
             'Authorization': `Token ${user}`
         }
     };
 
     const handleSubscribtion = async () => {
-        if (!subscribtion){
-            try {
-                await axios.post(
-                    SUBSCRIBTION_URL,
-                    config
-                );
-                setSubscribtion(true);
-            }
-            catch(error){
-                console.log(error);
-            }
+        if (!subscribtion) {
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", `Token ${user}`);
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+            fetch(`http://127.0.0.1:8000/courses/manage-user-courses/${props.id}/`, requestOptions)
+                .then(response => setSubscribtion(true))
+                .catch(error => console.log('error', error));
         } else {
             try {
                 await axios.delete(
@@ -39,7 +39,7 @@ function CourseCard(props){
                 );
                 setSubscribtion(false);
             }
-            catch(error){
+            catch (error) {
                 console.log(error);
             }
         }
@@ -48,11 +48,11 @@ function CourseCard(props){
     return (
         <div className="card">
             <button className='course-subscribe' onClick={handleSubscribtion}>
-                <img className='course-subscribe-img' src={subscribtion ? Unsubscribe : Subscribe}/>
+                <img className='course-subscribe-img' src={subscribtion ? Unsubscribe : Subscribe} />
             </button>
             <Link to={`/my-courses/${props.id}/materials`} className='course-link'>
                 <div className='card-image-container'>
-                    <img className="card-image" src={require('../assests/abstract-dark-blue-luxury-background-free-vector.jpg')} alt=""/>
+                    <img className="card-image" src={require('../assests/abstract-dark-blue-luxury-background-free-vector.jpg')} alt="" />
                 </div>
                 <div className='course-data'>
                     <div className='course-info'>
@@ -61,7 +61,7 @@ function CourseCard(props){
                         <p className='course-instructor'>Dr. Godzilla</p>
                     </div>
                     <div className='platform-logo-container'>
-                        <img className='platform-logo' src={ClassroomLogo} alt=''/>
+                        <img className='platform-logo' src={ClassroomLogo} alt='' />
                     </div>
                 </div>
             </Link>

@@ -67,6 +67,8 @@ function MaterialPage(){
                                         <MaterialCard key={value.id}
                                             fileName = {value.file_name}
                                             fileLink = {value.file}
+                                            id = {value.id}
+                                            admin = {isAdmin}
                                         />
                                     );
                                 })

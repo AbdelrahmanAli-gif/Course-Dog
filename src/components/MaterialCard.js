@@ -1,9 +1,11 @@
 import '../styles/MaterialCard.css';
 import ClassroomLogo from '../assests/classroom.svg';
 import FileLogo from '../assests/file.svg'
-import { Link } from 'react-router-dom';
+import Delete from '../assests/delete.svg';
 import { useState, useEffect } from 'react';
 import axios from '../api/axios';
+import { useParams } from 'react-router-dom';
+import { getAuthUser } from '../services/Storage';
 
 function MaterialCard(props){
 
@@ -34,6 +36,31 @@ function MaterialCard(props){
             console.log(error);
         }
     }
+    
+    const user = getAuthUser();
+    const { id } = useParams();
+    const DELETE_URL = `materials/delete-material/${id}/${props.id}/`;
+    const config = {
+        headers: {
+            'Authorization': `Token ${user}`
+        }
+    };
+
+    const handleDelete = async () => {
+        try {
+            await axios.delete(
+                DELETE_URL,
+                config,
+                {
+                    announcement_id: props.id
+                }
+            );
+            window.location.reload(true);
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
 
     var blob = new Blob([pdf], { type: 'application/pdf' });
     var blobURL = URL.createObjectURL(blob);
@@ -53,21 +80,26 @@ function MaterialCard(props){
     }
 
     return (
-        <button className='material-card' onClick={handleDownload}>
-            <div className='material-info'>
-                <div className='material-image-container'>
-                    <img className='file-image' src={FileLogo} />
+        <div className='card-container'>
+            <button className='material-card' onClick={handleDownload}>
+                <div className='material-info'>
+                    <div className='material-image-container'>
+                        <img className='file-image' src={FileLogo} />
+                    </div>
+                    <div className='material-data'>
+                        <h3 className='material-title'>{props.fileName}</h3>
+                        <h4 className='material-provider'>Dr. Godzilla</h4>
+                        <h5 className='material-date'>01/05/2023</h5>
+                    </div>
                 </div>
-                <div className='material-data'>
-                    <h3 className='material-title'>{props.fileName}</h3>
-                    <h4 className='material-provider'>Dr. Godzilla</h4>
-                    <h5 className='material-date'>01/05/2023</h5>
+                <div className='platform-image-container'>
+                    <img className='platform-image' src={ClassroomLogo} />
                 </div>
-            </div>
-            <div className='platform-image-container'>
-                <img className='platform-image' src={ClassroomLogo} />
-            </div>
-        </button>
+            </button>
+            <button className='delete-btn' style={props.admin ? {display: 'inline'} : {display: 'none'}} onClick={handleDelete}>
+                <img className='delete-icon' src={Delete}/>
+            </button>
+        </div>
     )
 }
 

@@ -5,6 +5,7 @@
     align-items: center;
     flex-shrink: 0;
     margin-bottom: 50px;
+    width: 100%;
 }
 
 .courses-btn-container {

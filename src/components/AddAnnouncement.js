@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import '../styles/AddAnnouncement.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from '../api/axios';
 import { getAuthUser } from '../services/Storage';
 
 function AddAnnouncement() {
@@ -43,7 +42,8 @@ function AddAnnouncement() {
     }
 
     return (
-        <div className='main-content'>
+        <div className='announcement-main-content'>
+            <h1 className='page-header'>ADD ANNOUNCEMENT</h1>
             <form className="form-content" onSubmit={handleSubmit}>
                 <div className="title-container">
                     <label htmlFor="title" className='form-label'>Announcement Title</label>

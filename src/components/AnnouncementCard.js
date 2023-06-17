@@ -13,6 +13,9 @@ function AnnouncementCard(props){
     const config = {
         headers: {
             'Authorization': `Token ${user}`
+        },
+        data: { 
+            announcement_id: props.id
         }
     };
 
@@ -20,10 +23,7 @@ function AnnouncementCard(props){
         try {
             await axios.delete(
                 DELETE_URL,
-                config,
-                {
-                    announcement_id: props.id
-                }
+                config
             );
             window.location.reload(true);
         }

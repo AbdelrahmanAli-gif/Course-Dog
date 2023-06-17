@@ -47,3 +47,18 @@
 .material-date {
     font-weight: 300;
 }
+
+.delete-btn {
+    background-color: #D11A2A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: none;
+    width: 35px;
+    height: 35px;
+}
+
+.delete-icon {
+    width: 100%;
+}

@@ -78,6 +78,7 @@ function Navbar() {
                     <div className='mobile-navbar-list'>
                         <Link className='navbar-link' to={'/my-courses'}>My Courses</Link>
                         <Link className='navbar-link'to={'/organization-courses'}>Organization Courses</Link>
+                        <Link className='navbar-link' to={'/profile'}>Profile</Link>
                         <button className='mobile-logout' onClick={handleLogout}>Logout</button>
                         <div className='search-field'>
                             <div className='search-icon'>
@@ -105,6 +106,7 @@ function Navbar() {
                 <div className='links-section'>
                     <Link className='navbar-link' to={'/my-courses'}>My Courses</Link>
                     <Link className='navbar-link'to={'/organization-courses'}>Organization Courses</Link>
+                    <Link className='navbar-link' to={'/profile'}>Profile</Link>
                 </div>
                 <div className='navbar-second-section'>
                     <div className='search-field'>
@@ -129,7 +131,9 @@ function Navbar() {
                         </div>
                     </div>
                     <div className='user-logo-container'>
-                        <img className='user-logo' src={UserIcon} alt='' />
+                        <Link className='user-logo-btn' to={'/profile'}>
+                            <img className='user-logo' src={UserIcon} alt='' />
+                        </Link>
                         <select className='logout' onChange={handleLogout} defaultValue={''}>
                             <option value={''} disabled hidden></option>
                             <option>Logout</option>
