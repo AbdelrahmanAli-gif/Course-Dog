@@ -6,3 +6,25 @@
     align-items: center;
     justify-content: space-around;
 }
+
+.course-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.post-btn {
+    background-color: #282828;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    align-self: center;
+}
+
+.post-btn:hover {
+    background-color: white;
+    color: #282828;
+}

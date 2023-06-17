@@ -1,22 +1,22 @@
 import CourseNavbar from "./CourseNavbar";
 import '../styles/CoursePage.css';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from '../api/axios';
 import { getAuthUser } from '../services/Storage';
 import { useState, useEffect } from 'react';
 import AnnoundementCard from "./AnnouncementCard";
 
-function CoursePage(props){
+function AnnouncementPage(){
     const { id } = useParams();
     const [materials, setMaterials] = useState([]);
     const [courseName, setCourseName] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
     const [error, setError] = useState({});
     const user = getAuthUser();
-
     const GET_COURSE_ANNOUNCEMENTS = `announcements/manage-announcements/${id}/`;
 
     useEffect(() => {
-        getMaterials();
+        getAnnouncements();
     }, [])
 
     const config = {
@@ -25,7 +25,7 @@ function CoursePage(props){
         }
     };
 
-    const getMaterials = async () => {
+    const getAnnouncements = async () => {
 
         try {
             const response = await axios.get(
@@ -34,6 +34,7 @@ function CoursePage(props){
             )
             setCourseName(response.data['course']['name'])
             setMaterials(response.data['announcements']);
+            setIsAdmin(response.data['is_course_admin']);
             setError({
                 errorState: false,
                 errorMsg: ""
@@ -53,7 +54,10 @@ function CoursePage(props){
             !error.errorState ? (
                 <div className="container">
                     <div className="content">
-                        <h1 className="page-title">{courseName.toUpperCase()}</h1>
+                        <div className="course-header">
+                            <h1 className="page-title">{courseName.toUpperCase()}</h1>
+                            <Link to={`/my-courses/${id}/announcements/add`} className="post-btn" style={isAdmin ? {display: 'block'} : {display: 'none'}}>Add Announcement</Link>
+                        </div>
                         <CourseNavbar activeMaterials={false}/>
                         <div className="materials-container">
                             {
@@ -63,6 +67,7 @@ function CoursePage(props){
                                             announcement = {value.announcement}
                                             id = {value.id}
                                             title = {value.title}
+                                            admin = {isAdmin}
                                         />
                                     );
                                 })
@@ -76,4 +81,4 @@ function CoursePage(props){
     )
 }
 
-export default CoursePage;
+export default AnnouncementPage;

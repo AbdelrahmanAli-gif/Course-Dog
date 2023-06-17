@@ -10,6 +10,8 @@ import OrganizationCourses from "./components/OrganizationCourses";
 import App from "./App";
 import Guest from "./middleware/Guest";
 import User from "./middleware/User";
+import AddAnnouncement from "./components/AddAnnouncement";
+import AddMaterial from "./components/AddMaterial";
 
 const ROUTER = createBrowserRouter([
     {
@@ -36,6 +38,14 @@ const ROUTER = createBrowserRouter([
                             {
                                 path: 'my-courses/:id/announcements',
                                 element: <AnnouncementsPage />,
+                            },
+                            {
+                                path: 'my-courses/:id/materials/add',
+                                element: <AddMaterial />
+                            },
+                            {
+                                path: 'my-courses/:id/announcements/add',
+                                element: <AddAnnouncement />
                             }
                         ]
                     }
