@@ -14,6 +14,7 @@ import AddAnnouncement from "./components/AddAnnouncement";
 import AddMaterial from "./components/AddMaterial";
 import UserProfile from "./components/UserProfile";
 import EditProfile from "./components/EditProfile";
+import ImportCourse from "./components/ImportCourse";
 
 const ROUTER = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const ROUTER = createBrowserRouter([
                             {
                                 path: 'my-courses/:id/announcements/add',
                                 element: <AddAnnouncement />
+                            },
+                            {
+                                path: 'import-course',
+                                element: <ImportCourse />
                             }
                         ]
                     }

@@ -5,7 +5,7 @@ import axios from '../api/axios';
 import { getAuthUser } from '../services/Storage';
 import { useState, useEffect } from 'react';
 
-function MyCourses(){
+function MyCourses() {
     const GET_USER_COURSES_URL = "courses/list-user-courses/";
     const user = getAuthUser();
 
@@ -16,7 +16,7 @@ function MyCourses(){
     }, [])
 
     const config = {
-        headers: { 
+        headers: {
             'Authorization': `Token ${user}`
         }
     };
@@ -30,27 +30,30 @@ function MyCourses(){
             )
             setCourses(response.data);
         }
-        catch(error){
+        catch (error) {
             console.log(error);
         };
     }
 
-    return(
+    return (
         <div className='container'>
             <div className='content'>
                 <div className='courses-btn-container'>
                     <h1 className='page-title'>MY COURSES</h1>
-                    <Link className='courses-btn' to={'/organization-courses'}>Organization Courses</Link>
+                    <div className='courses-btns-container'>
+                        <Link className='courses-btn' to={'/import-course'}>Import Course</Link>
+                        <Link className='courses-btn' to={'/organization-courses'}>Organization Courses</Link>
+                    </div>
                 </div>
                 <div className='courses-container'>
                     {
                         courses.map((value) => {
                             return (
                                 <CourseCard key={value.id}
-                                    subscribed = {true}
-                                    name = {value.name}
-                                    description = {value.description}
-                                    id = {value.id}
+                                    subscribed={true}
+                                    name={value.name}
+                                    description={value.description}
+                                    id={value.code}
                                 />
                             );
                         })

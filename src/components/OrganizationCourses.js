@@ -94,7 +94,7 @@ function OrganizationCourses() {
                                     subscribed = {findElement(value.id)}
                                     name = {value.name}
                                     description = {value.description}
-                                    id = {value.id}
+                                    id = {value.code}
                                 />
                             );
                         })
