@@ -67,3 +67,10 @@
 .id-image {
     width: 100%;
 }
+
+.error-msg {
+    width: 60%;
+    align-self: center;
+    padding: 5px;
+    text-align: center;
+}

@@ -3,7 +3,6 @@ import '../styles/ImportCourse.css';
 import Image from '../assests/Untitled.png';
 import { getAuthUser } from "../services/Storage";
 import axios from "../api/axios";
-import { useNavigate } from "react-router-dom";
 
 function ImportCourse() {
 
@@ -15,10 +14,15 @@ function ImportCourse() {
     const [courseCode, setCourseCode] = useState('');
     const [source, setSource] = useState('');
     const [courses, setCourses] = useState([]);
-    // const navigator = useNavigate();
     const errorRef = useRef();
     const [errorMsg, setErrorMsg] = useState("");
     const [errorColor, setErrorColor] = useState("");
+    const GET_ORG_COURSES_URL = "courses/list-courses/";
+    const [orgCourses, setOrgCourses] = useState([]);
+
+    useEffect(() => {
+        getOrgCourses();
+    }, []);
 
     useEffect(() => {
     }, [errorColor])
@@ -33,6 +37,20 @@ function ImportCourse() {
         headers: {
             'Authorization': `Token ${user}`
         }
+    }
+
+    const getOrgCourses = async () => {
+
+        try {
+            const response = await axios.get(
+                GET_ORG_COURSES_URL,
+                config
+            );
+            setOrgCourses(response.data);
+        }
+        catch (error) {
+            console.log(error);
+        };
     }
 
     const handleSubmit = async (e) => {
@@ -63,7 +81,7 @@ function ImportCourse() {
                     console.log(response.ok); // to get the status in boolean
 
                     if (response.ok) {
-                        handleErrorColor('#5E5E5E');
+                        handleErrorColor('#4BB543');
                         setErrorMsg(res['message']);
                     } else {
                         handleErrorColor('#FF3333');
@@ -99,7 +117,7 @@ function ImportCourse() {
                     console.log(response.ok); // to get the status in boolean
 
                     if (response.ok) {
-                        handleErrorColor('#5E5E5E');
+                        handleErrorColor('#4BB543');
                         setErrorMsg(res['message']);
                     } else {
                         handleErrorColor('#FF3333');
@@ -132,7 +150,7 @@ function ImportCourse() {
             <form className="import-form" onSubmit={handleSubmit}>
                 <p
                     ref={errorRef}
-                    className={errorMsg ? "errorMsg" : "offscreen"}
+                    className={errorMsg ? "error-msg" : "offscreen"}
                     aria-live="assertive"
                     style={{ backgroundColor: errorColor }}
                 >
@@ -197,14 +215,30 @@ function ImportCourse() {
                                 </div>
                                 <div className="course-code-container">
                                     <label className="form-label" htmlFor="course-code">Course Code</label>
-                                    <input
+                                    {/* <input
                                         className="form-input"
                                         id="course-code"
                                         required
                                         type="text"
                                         ref={courseCodeRef}
                                         onChange={(e) => setCourseCode(e.target.value)}
-                                    />
+                                    /> */}
+                                    <select
+                                        className="form-select"
+                                        id="course-code"
+                                        required
+                                        ref={courseCodeRef}
+                                        onChange={(e) => setCourseCode(e.target.value)}
+                                        >
+                                            <option className="form-option" value='' hidden></option>
+                                        {
+                                            orgCourses.map((value) => {
+                                                return (
+                                                    <option value={value.code} key={value.id}>{`${value.name} - ${value.code}`}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
                                 </div>
                                 <input type="submit" className="submit-btn" value='Import Course' />
                             </>

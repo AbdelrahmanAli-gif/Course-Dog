@@ -56,7 +56,7 @@ function CourseCard(props) {
                 </div>
                 <div className='course-data'>
                     <div className='course-info'>
-                        <h5 className='course-year'>Spring 2023</h5>
+                        <h5 className='course-year'>{props.code}</h5>
                         <h3 className='course-title'>{props.name}</h3>
                         <p className='course-instructor'>Dr. Godzilla</p>
                     </div>

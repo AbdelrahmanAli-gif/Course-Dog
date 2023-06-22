@@ -54,6 +54,7 @@ function MyCourses() {
                                     name={value.name}
                                     description={value.description}
                                     id={value.code}
+                                    code={value.code}
                                 />
                             );
                         })
