@@ -53,16 +53,21 @@ function ImportCourse() {
                 redirect: 'follow'
             };
 
-            fetch("http://127.0.0.1:8000/courses/load-drive/", requestOptions)
-                .then(response => {
-                    console.log(response.ok);
-                    console.log(response);
+            await fetch("http://127.0.0.1:8000/courses/load-drive/", requestOptions)
+                .then(async (response) => { // to resolve the promise
+
+                    const res = await response.json(); // to get the data
+                    console.log(res);
+                    console.log(res['message']); // to get the message
+
+                    console.log(response.ok); // to get the status in boolean
+
                     if (response.ok) {
                         handleErrorColor('#5E5E5E');
-                        setErrorMsg(response.message);
+                        setErrorMsg(res['message']);
                     } else {
                         handleErrorColor('#FF3333');
-                        setErrorMsg(response.message);
+                        setErrorMsg(res['message']);
                     }
                 })
                 .catch(error => console.log('error', error));
@@ -84,16 +89,21 @@ function ImportCourse() {
                 redirect: 'follow'
             };
 
-            fetch("http://127.0.0.1:8000/courses/load-classroom/", requestOptions)
-                .then(response => {
-                    console.log(response.ok);
-                    console.log(response);
+            await fetch("http://127.0.0.1:8000/courses/load-classroom/", requestOptions)
+                .then(async (response) => { // to resolve the promise
+
+                    const res = await response.json(); // to get the data
+                    console.log(res);
+                    console.log(res['message']); // to get the message
+
+                    console.log(response.ok); // to get the status in boolean
+
                     if (response.ok) {
                         handleErrorColor('#5E5E5E');
-                        setErrorMsg(response.message);
+                        setErrorMsg(res['message']);
                     } else {
                         handleErrorColor('#FF3333');
-                        setErrorMsg(response.message);
+                        setErrorMsg(res['message']);
                     }
                 })
                 .catch(error => console.log('error', error));
