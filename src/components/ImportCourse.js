@@ -15,7 +15,17 @@ function ImportCourse() {
     const [courseCode, setCourseCode] = useState('');
     const [source, setSource] = useState('');
     const [courses, setCourses] = useState([]);
-    const navigator = useNavigate();
+    // const navigator = useNavigate();
+    const errorRef = useRef();
+    const [errorMsg, setErrorMsg] = useState("");
+    const [errorColor, setErrorColor] = useState("");
+
+    useEffect(() => {
+    }, [errorColor])
+
+    const handleErrorColor = (color) => {
+        setErrorColor(color);
+    }
 
     const LOAD_COURSES_URL = 'courses/load-courses/';
     const user = getAuthUser();
@@ -25,7 +35,7 @@ function ImportCourse() {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (source === 'drive') {
             var myHeaders = new Headers();
@@ -44,8 +54,19 @@ function ImportCourse() {
             };
 
             fetch("http://127.0.0.1:8000/courses/load-drive/", requestOptions)
-                .then(response => navigator('/my-courses'))
+                .then(response => {
+                    console.log(response.ok);
+                    console.log(response);
+                    if (response.ok) {
+                        handleErrorColor('#5E5E5E');
+                        setErrorMsg(response.message);
+                    } else {
+                        handleErrorColor('#FF3333');
+                        setErrorMsg(response.message);
+                    }
+                })
                 .catch(error => console.log('error', error));
+
         }
         else {
             var myHeaders = new Headers();
@@ -64,7 +85,17 @@ function ImportCourse() {
             };
 
             fetch("http://127.0.0.1:8000/courses/load-classroom/", requestOptions)
-                .then(response => navigator('/my-courses'))
+                .then(response => {
+                    console.log(response.ok);
+                    console.log(response);
+                    if (response.ok) {
+                        handleErrorColor('#5E5E5E');
+                        setErrorMsg(response.message);
+                    } else {
+                        handleErrorColor('#FF3333');
+                        setErrorMsg(response.message);
+                    }
+                })
                 .catch(error => console.log('error', error));
         }
     }
@@ -89,6 +120,14 @@ function ImportCourse() {
         <div className="import-container">
             <h1 className="page-header">Import Course</h1>
             <form className="import-form" onSubmit={handleSubmit}>
+                <p
+                    ref={errorRef}
+                    className={errorMsg ? "errorMsg" : "offscreen"}
+                    aria-live="assertive"
+                    style={{ backgroundColor: errorColor }}
+                >
+                    {errorMsg}
+                </p>
                 <div className="form-source-container">
                     <label className="form-label" htmlFor="source">Import from</label>
                     <select className="form-select" id="source" onChange={handleSource}>

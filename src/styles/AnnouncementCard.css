@@ -1,4 +1,12 @@
-.card-container {
+.announcement-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+}
+
+.announcement-card-container {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -52,6 +60,17 @@
     position: absolute;
     right: 15px;
     top: 15px;
+}
+
+.similar-announcements {
+    background-color: white;
+    padding: 5px;
+    width: 80%;
+    margin-top: 5px;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .delete-btn {

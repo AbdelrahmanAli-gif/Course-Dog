@@ -64,7 +64,7 @@ function AnnouncementPage(){
                                 materials.map((value) => {
                                     return (
                                         <AnnoundementCard key={value.id}
-                                            announcement = {value.announcement}
+                                            announcement = {value.content}
                                             id = {value.id}
                                             title = {value.title}
                                             admin = {isAdmin}

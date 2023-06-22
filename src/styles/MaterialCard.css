@@ -1,3 +1,18 @@
+.material-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+}
+
+.material-card-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
 .material-card {
     display: flex;
     align-items: center;
@@ -46,6 +61,30 @@
 
 .material-date {
     font-weight: 300;
+}
+
+.similar-btn {
+    background-color: #282828;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.similar-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+.similar-files {
+    background-color: white;
+    padding: 5px;
+    width: 80%;
+    margin-top: 5px;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .delete-btn {

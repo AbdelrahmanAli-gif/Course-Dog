@@ -1,0 +1,9 @@
+.similar-material-container {
+    width: 100%;
+}
+
+.similar-material {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
