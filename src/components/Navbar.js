@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CourseSearchService } from '../services/CourseSearchService';
 import { SearchResultCard } from './SearchResultCard';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { getAuthUser, removeAuthUser } from '../services/Storage';
+import { getAuthUser, removeAuthGroup, removeAuthOrg, removeAuthUser } from '../services/Storage';
 import axios from '../api/axios';
 
 function Navbar() {
@@ -84,6 +84,8 @@ function Navbar() {
 
     const handleLogout = () => {
         removeAuthUser();
+        removeAuthGroup();
+        removeAuthOrg();
         navigator('/');
     }
 

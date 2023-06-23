@@ -15,6 +15,14 @@ import AddMaterial from "./components/AddMaterial";
 import UserProfile from "./components/UserProfile";
 import EditProfile from "./components/EditProfile";
 import ImportCourse from "./components/ImportCourse";
+import Dashboard from "./components/Dashboard";
+import DashboardCourses from "./components/DashboardCourses";
+import CourseAdmins from "./components/CourseAdmins";
+import AddAdmin from "./components/AddAdmin";
+import AddCourse from "./components/AddCourse";
+import OrganizationAdmins from "./components/OrganizationAdmins";
+import Subdomains from "./components/Subdomains";
+import AddSubdomain from "./components/AddSubdomain";
 
 const ROUTER = createBrowserRouter([
     {
@@ -82,13 +90,50 @@ const ROUTER = createBrowserRouter([
                         element: <ForgotPassword />
                     },
                 ]
+            },
+            {
+                element: <Dashboard />,
+                children: [
+                    {
+                        path: '/courses',
+                        element: <DashboardCourses />
+                    },
+                    {
+                        path: '/courses/add-course',
+                        element: <AddCourse />
+                    },
+                    {
+                        path: '/courses/:id',
+                        element: <CourseAdmins />
+                    },
+                    {
+                        path: '/courses/:id/add-course-admin',
+                        element: <AddAdmin caller='course'/>
+                    },
+                    {
+                        path: '/organization-admins',
+                        element: <OrganizationAdmins />
+                    },
+                    {
+                        path: '/organization-admins/add-organization-admin',
+                        element: <AddAdmin caller='organization'/>
+                    },
+                    {
+                        path: '/subdomains',
+                        element: <Subdomains />
+                    },
+                    {
+                        path: '/subdomains/add-subdomain',
+                        element: <AddSubdomain />
+                    }
+                ]
             }
         ]
     },
     {
         path: '*',
         element: <h1>Not Found</h1>
-    }
+    },
 ]);
 
 export default ROUTER;

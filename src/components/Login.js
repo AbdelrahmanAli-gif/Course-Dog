@@ -4,16 +4,17 @@ import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthProvider";
 import axios from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
-import { setAuthUser } from "../services/Storage";
+import { setAuthGroup, setAuthOrg, setAuthUser } from "../services/Storage";
 
 
 function Login() {
     const LOGIN_URL = "auth/auth/token/login/"; // Backend Auth URL
     const LOAD_COURSES_URL = 'courses/load-courses/';
+    const GET_USER_INFO = 'auth/user-info/';
 
     const navigate = useNavigate();
 
-    const { setAuth } = useContext(AuthContext);
+    // const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errorRef = useRef();
 
@@ -54,14 +55,29 @@ function Login() {
                     'Authorization': `Token ${accessToken}`
                 }
             };
-            axios.get(
-                LOAD_COURSES_URL,
+
+            const info = await axios.get(
+                GET_USER_INFO,
                 config
             );
+
+            const group = info.data['groups'];
+            const org = info.data['organization'];
             setAuthUser(accessToken);
-            setAuth({ user, pwd });
+            setAuthGroup(group);
+            setAuthOrg(org);
+
+            if (!group.includes('OrganizationAdmin')){
+                await axios.get(
+                    LOAD_COURSES_URL,
+                    config
+                );
+                navigate('/my-courses');
+            } else {
+                navigate('/courses');
+            }
+            // setAuth({ user, pwd });
             
-            navigate('/my-courses');
         } catch (err) {
             if (!err?.response) {
                 setErrorMsg("No Server Response");

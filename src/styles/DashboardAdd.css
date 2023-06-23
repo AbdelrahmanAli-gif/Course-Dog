@@ -1,0 +1,42 @@
+.dashboard-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.dashboard-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 60%;
+    flex-direction: column;
+    margin-top: 15px;
+    background-color: white;
+    gap: 15px;
+}
+
+.dashboard-input-label-container {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    gap: 10px;
+    padding: 20px;
+    width: 100%;
+}
+
+.dashboard-form-label {
+    font-size: 22px;
+}
+
+.dashboard-form-input {
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.dashboard-submit {
+    margin-bottom: 20px;
+}
