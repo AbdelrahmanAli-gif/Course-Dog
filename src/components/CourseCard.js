@@ -50,7 +50,7 @@ function CourseCard(props) {
             <button className='course-subscribe' onClick={handleSubscribtion}>
                 <img className='course-subscribe-img' src={subscribtion ? Unsubscribe : Subscribe} />
             </button>
-            <Link to={`/my-courses/${props.id}/materials`} className='course-link'>
+            <Link to={props.caller === 'subcourses' ? `/my-courses/${props.parentId}/sub-courses/${props.childId}/materials` : `/my-courses/${props.id}/materials`} className='course-link'>
                 <div className='card-image-container'>
                     <img className="card-image" src={require('../assests/abstract-dark-blue-luxury-background-free-vector.jpg')} alt="" />
                 </div>

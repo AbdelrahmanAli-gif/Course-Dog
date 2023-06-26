@@ -41,6 +41,7 @@ function OrganizationAdmins() {
             </div>
             <div className="results-container">
                 {
+                    admins.length === 0 ? 'No admins' :
                     admins.map((value) => {
                         return (
                             <AdminDetails key={value.id}

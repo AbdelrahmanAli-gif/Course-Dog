@@ -23,6 +23,9 @@ import AddCourse from "./components/AddCourse";
 import OrganizationAdmins from "./components/OrganizationAdmins";
 import Subdomains from "./components/Subdomains";
 import AddSubdomain from "./components/AddSubdomain";
+import SubCourses from "./components/SubCourses";
+import SubCourseMaterials from "./components/SubCourseMaterials";
+import SubCourseAnnouncements from "./components/SubCourseAnnouncements";
 
 const ROUTER = createBrowserRouter([
     {
@@ -65,6 +68,18 @@ const ROUTER = createBrowserRouter([
                             {
                                 path: 'my-courses/:id/announcements/add',
                                 element: <AddAnnouncement />
+                            },
+                            {
+                                path: 'my-courses/:id/sub-courses',
+                                element: <SubCourses />
+                            },
+                            {
+                                path: 'my-courses/:id/sub-courses/:subId/materials',
+                                element: <SubCourseMaterials />
+                            },
+                            {
+                                path: 'my-courses/:id/sub-courses/:subId/announcements',
+                                element: <SubCourseAnnouncements />
                             },
                             {
                                 path: 'import-course',

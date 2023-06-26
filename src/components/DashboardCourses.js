@@ -41,6 +41,7 @@ function DashboardCourses() {
             </div>
             <div className="results-container">
                 {
+                    courses.length === 0 ? 'No courses' : 
                     courses.map((value) => {
                         return (
                             <CourseDetails key={value.id}

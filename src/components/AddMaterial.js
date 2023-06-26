@@ -51,7 +51,7 @@ function AddMaterial() {
                             <div>
                                 <p>{file.name}</p>
                                 <p>{file.type}</p>
-                                <p>{file.lastModifiedDate.toDateString()}</p>
+                                {/* <p>{file.lastModifiedDate.toDateString()}</p> */}
                             </div>
                         ) : (
                             <p>No file uploaded</p>

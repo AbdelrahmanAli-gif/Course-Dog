@@ -56,7 +56,10 @@ function AnnouncementPage(){
                     <div className="content">
                         <div className="course-header">
                             <h1 className="page-title">{courseName.toUpperCase()}</h1>
-                            <Link to={`/my-courses/${id}/announcements/add`} className="post-btn" style={isAdmin ? {display: 'block'} : {display: 'none'}}>Add Announcement</Link>
+                            <div className="course-header-btns">
+                                    <Link to={`/my-courses/${id}/sub-courses`} className="post-btn">Sub Courses</Link>
+                                    <Link to={`/my-courses/${id}/announcements/add`} className="post-btn" style={isAdmin ? { display: 'block' } : { display: 'none' }}>Add Announcement</Link>
+                                </div>
                         </div>
                         <CourseNavbar activeMaterials={false}/>
                         <div className="materials-container">
@@ -68,6 +71,7 @@ function AnnouncementPage(){
                                             id = {value.id}
                                             title = {value.title}
                                             admin = {isAdmin}
+                                            creationDate={value.creation_date}
                                         />
                                     );
                                 })

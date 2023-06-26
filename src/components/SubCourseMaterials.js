@@ -6,15 +6,15 @@ import { getAuthUser } from '../services/Storage';
 import { useState, useEffect } from 'react';
 import MaterialCard from "./MaterialCard";
 
-function MaterialPage() {
-    const { id } = useParams();
+function SubCourseMaterials() {
+    const { id, subId } = useParams();
     const [materials, setMaterials] = useState([]);
     const [courseName, setCourseName] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
     const [error, setError] = useState({});
     const user = getAuthUser();
 
-    const GET_COURSE_MATERIALS = `materials/upload-material/${id}/`;
+    const GET_COURSE_MATERIALS = `materials/sub-courses/${id}/${subId}/`;
 
     useEffect(() => {
         getMaterials();
@@ -35,7 +35,7 @@ function MaterialPage() {
             )
             setCourseName(response.data['course']['name'])
             setMaterials(response.data['materials']);
-            setIsAdmin(response.data['is_course_admin']);
+            // setIsAdmin(response.data['is_course_admin']);
             setError({
                 errorState: false,
                 errorMsg: ""
@@ -57,12 +57,8 @@ function MaterialPage() {
                         <div className="content">
                             <div className="course-header">
                                 <h1 className="page-title">{courseName.toUpperCase()}</h1>
-                                <div className="course-header-btns">
-                                    <Link to={`/my-courses/${id}/sub-courses`} className="post-btn">Sub Courses</Link>
-                                    <Link to={`/my-courses/${id}/materials/add`} className="post-btn" style={isAdmin ? { display: 'block' } : { display: 'none' }}>Add Material</Link>
-                                </div>
                             </div>
-                            <CourseNavbar activeMaterials={true} />
+                            <CourseNavbar activeMaterials={true} caller='subcourse' />
                             <div className="materials-container">
                                 {
                                     materials.map((value) => {
@@ -86,4 +82,4 @@ function MaterialPage() {
     )
 }
 
-export default MaterialPage;
+export default SubCourseMaterials;

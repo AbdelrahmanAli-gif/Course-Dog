@@ -96,6 +96,12 @@ function MaterialCard(props) {
         }
     }
 
+    const parseDate = (creationDate) => {
+        creationDate = creationDate.replaceAll('-', '/');
+        creationDate = creationDate.substring(0, 10) + ' ' + creationDate.substring(11, 19);
+        return creationDate;
+    }
+
     return (
         <div className='material-container'>
             <div className='material-card-container'>
@@ -107,7 +113,7 @@ function MaterialCard(props) {
                         <div className='material-data'>
                             <h3 className='material-title'>{props.fileName}</h3>
                             <h4 className='material-provider'>Dr. Godzilla</h4>
-                            <h5 className='material-date'>01/05/2023</h5>
+                            <h5 className='material-date'>{parseDate(props.creationDate)}</h5>
                         </div>
                     </div>
                     <div className='platform-image-container'>

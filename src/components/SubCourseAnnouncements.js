@@ -4,20 +4,19 @@ import { useParams, Link } from "react-router-dom";
 import axios from '../api/axios';
 import { getAuthUser } from '../services/Storage';
 import { useState, useEffect } from 'react';
-import MaterialCard from "./MaterialCard";
+import AnnoundementCard from "./AnnouncementCard";
 
-function MaterialPage() {
-    const { id } = useParams();
+function SubCourseAnnouncements() {
+    const { id, subId } = useParams();
     const [materials, setMaterials] = useState([]);
     const [courseName, setCourseName] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
     const [error, setError] = useState({});
     const user = getAuthUser();
-
-    const GET_COURSE_MATERIALS = `materials/upload-material/${id}/`;
+    const GET_COURSE_ANNOUNCEMENTS = `announcements/sub-courses/${id}/${subId}/`;
 
     useEffect(() => {
-        getMaterials();
+        getAnnouncements();
     }, [])
 
     const config = {
@@ -26,16 +25,16 @@ function MaterialPage() {
         }
     };
 
-    const getMaterials = async () => {
+    const getAnnouncements = async () => {
 
         try {
             const response = await axios.get(
-                GET_COURSE_MATERIALS,
+                GET_COURSE_ANNOUNCEMENTS,
                 config
             )
             setCourseName(response.data['course']['name'])
-            setMaterials(response.data['materials']);
-            setIsAdmin(response.data['is_course_admin']);
+            setMaterials(response.data['announcements']);
+            // setIsAdmin(response.data['is_course_admin']);
             setError({
                 errorState: false,
                 errorMsg: ""
@@ -57,20 +56,16 @@ function MaterialPage() {
                         <div className="content">
                             <div className="course-header">
                                 <h1 className="page-title">{courseName.toUpperCase()}</h1>
-                                <div className="course-header-btns">
-                                    <Link to={`/my-courses/${id}/sub-courses`} className="post-btn">Sub Courses</Link>
-                                    <Link to={`/my-courses/${id}/materials/add`} className="post-btn" style={isAdmin ? { display: 'block' } : { display: 'none' }}>Add Material</Link>
-                                </div>
                             </div>
-                            <CourseNavbar activeMaterials={true} />
+                            <CourseNavbar activeMaterials={false} caller='subcourse' />
                             <div className="materials-container">
                                 {
                                     materials.map((value) => {
                                         return (
-                                            <MaterialCard key={value.id}
-                                                fileName={value.file_name}
-                                                fileLink={value.file}
+                                            <AnnoundementCard key={value.id}
+                                                announcement={value.content}
                                                 id={value.id}
+                                                title={value.title}
                                                 admin={isAdmin}
                                                 creationDate={value.creation_date}
                                             />
@@ -86,4 +81,4 @@ function MaterialPage() {
     )
 }
 
-export default MaterialPage;
+export default SubCourseAnnouncements;

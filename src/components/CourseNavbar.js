@@ -1,26 +1,44 @@
 import { Link, useParams } from 'react-router-dom';
 import '../styles/CourseNavbar.css';
 
-function CourseNavbar(props){
+function CourseNavbar(props) {
 
-    const { id } = useParams();
+    const { id, subId } = useParams();
     return (
         <>
             {
-                props.activeMaterials ? (
-                    <div className="course-navbar">
-                        <h2 className='course-navbar-title active'>Materials</h2>
-                        <Link to={`/my-courses/${id}/announcements`} className='nav-link'>
-                            <h2 className='course-navbar-title'>Announcements</h2>
-                        </Link>
-                    </div>
+                props.caller === 'subcourse' ? (
+                    props.activeMaterials ? (
+                        <div className="course-navbar">
+                            <h2 className='course-navbar-title active'>Materials</h2>
+                            <Link to={`/my-courses/${id}/sub-courses/${subId}/announcements`} className='nav-link'>
+                                <h2 className='course-navbar-title'>Announcements</h2>
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className="course-navbar">
+                            <Link to={`/my-courses/${id}/sub-courses/${subId}/materials`} className='nav-link'>
+                                <h2 className='course-navbar-title'>Materials</h2>
+                            </Link>
+                            <h2 className='course-navbar-title active'>Announcements</h2>
+                        </div>
+                    )
                 ) : (
-                    <div className="course-navbar">
-                        <Link to={`/my-courses/${id}/materials`} className='nav-link'>
-                            <h2 className='course-navbar-title'>Materials</h2>
-                        </Link>
-                        <h2 className='course-navbar-title active'>Announcements</h2>
-                    </div>
+                    props.activeMaterials ? (
+                        <div className="course-navbar">
+                            <h2 className='course-navbar-title active'>Materials</h2>
+                            <Link to={`/my-courses/${id}/announcements`} className='nav-link'>
+                                <h2 className='course-navbar-title'>Announcements</h2>
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className="course-navbar">
+                            <Link to={`/my-courses/${id}/materials`} className='nav-link'>
+                                <h2 className='course-navbar-title'>Materials</h2>
+                            </Link>
+                            <h2 className='course-navbar-title active'>Announcements</h2>
+                        </div>
+                    )
                 )
             }
             <div className='line'></div>

@@ -50,6 +50,12 @@ function AnnouncementCard(props) {
         }
     }
 
+    const parseDate = (creationDate) => {
+        creationDate = creationDate.replaceAll('-', '/');
+        creationDate = creationDate.substring(0, 10) + ' ' + creationDate.substring(11, 19);
+        return creationDate;
+    }
+
     return (
         <div className='announcement-container'>
             <div className='announcement-card-container'>
@@ -60,7 +66,7 @@ function AnnouncementCard(props) {
                         </div>
                         <h2 className='announcement-publisher'>{props.title}</h2>
                     </div>
-                    <h5 className='announcement-date'>01/05/2023</h5>
+                    <h5 className='announcement-date'>{parseDate(props.creationDate)}</h5>
                     <p className='announcement-content'>
                         {props.announcement}
                     </p>

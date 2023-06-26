@@ -28,3 +28,10 @@
     background-color: white;
     color: #282828;
 }
+
+.course-header-btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+}

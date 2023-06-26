@@ -43,6 +43,7 @@ function CourseAdmins() {
             </div>
             <div className="results-container">
                 {
+                    admins.length === 0 ? 'No admins' :
                     admins.map((value) => {
                         return (
                             <div key={value.id}>

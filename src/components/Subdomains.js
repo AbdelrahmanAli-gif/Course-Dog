@@ -42,6 +42,7 @@ function Subdomains() {
             </div>
             <div className="results-container">
                 {
+                    subdomains.length === 0 ? 'No subdomains' : 
                     subdomains.map((value) => {
                         return <p key={value.subdomain}>{value.subdomain}</p>
                     })

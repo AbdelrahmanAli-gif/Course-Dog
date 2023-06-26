@@ -7,7 +7,7 @@ import Close from '../assests/close.svg';
 import { useEffect, useRef, useState } from 'react';
 import { CourseSearchService } from '../services/CourseSearchService';
 import { SearchResultCard } from './SearchResultCard';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { getAuthUser, removeAuthGroup, removeAuthOrg, removeAuthUser } from '../services/Storage';
 import axios from '../api/axios';
 
@@ -49,6 +49,9 @@ function Navbar() {
         }
     }
 
+    const { id } = useParams();
+    const GET_COURSE_MATERIALS = `materials/upload-material/${id}/`;
+    const GET_COURSE_ANNOUNCEMENTS = `announcements/manage-announcements/${id}/`;
     const GET_USER_COURSES_URL = "courses/list-user-courses/";
     const user = getAuthUser();
     const config = {
@@ -57,6 +60,8 @@ function Navbar() {
         }
     };
 
+    const url = window.location.href;
+
     async function initiateSearch() {
         // searchService.seachCourses(searchTerm)
         //     .then((data) => {
@@ -64,14 +69,36 @@ function Navbar() {
         //     })
         if (searchTerm === "") return [];
         try {
-            const response = await axios.get(
-                GET_USER_COURSES_URL,
-                config
-            );
-            const courses = response.data;
-            setSearchResults(courses.filter((course) => {
-                return course.name.toLowerCase().includes(searchTerm);
-            }));
+            if (url.includes('materials')) {
+                const response = await axios.get(
+                    GET_COURSE_MATERIALS,
+                    config
+                );
+                const materials = response.data['materials'];
+                setSearchResults(materials.filter((material) => {
+                    return material.file_name.toLowerCase().includes(searchTerm.toLowerCase());
+                }));
+            }
+            else if (url.includes('announcement')) {
+                const response = await axios.get(
+                    GET_COURSE_ANNOUNCEMENTS,
+                    config
+                );
+                const announcements = response.data['announcements'];
+                setSearchResults(announcements.filter((announcement) => {
+                    return announcement.content.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+                }));
+            }
+            else {
+                const response = await axios.get(
+                    GET_USER_COURSES_URL,
+                    config
+                );
+                const courses = response.data;
+                setSearchResults(courses.filter((course) => {
+                    return course.name.toLowerCase().includes(searchTerm.toLowerCase());
+                }));
+            }
         }
         catch (error) {
             console.log(error);
@@ -126,9 +153,15 @@ function Navbar() {
                             />
                             <div className='search-results'>
                                 {
-                                    searchResults.map((result) => {
-                                        return <SearchResultCard course={result} className="result" key={result.id}/>
-                                    })
+                                    url.includes('materials') ?
+                                        searchResults.map((result) => {
+                                            return <SearchResultCard caller='materials' course={result} className="result" key={result.id} />
+                                        }) : url.includes('announcements') ?
+                                            searchResults.map((result) => {
+                                                return <SearchResultCard caller='announcements' course={result} className="result" key={result.id} />
+                                            }) : searchResults.map((result) => {
+                                                return <SearchResultCard caller='course' course={result} className="result" key={result.id} />
+                                            })
                                 }
                             </div>
                         </div>
@@ -155,9 +188,15 @@ function Navbar() {
                         />
                         <div className='search-results'>
                             {
-                                searchResults.map((result) => {
-                                    return <SearchResultCard course={result} className="result" key={result.id}/>
-                                })
+                                url.includes('materials') ?
+                                    searchResults.map((result) => {
+                                        return <SearchResultCard caller='materials' course={result} className="result" key={result.id} />
+                                    }) : url.includes('announcements') ?
+                                        searchResults.map((result) => {
+                                            return <SearchResultCard caller='announcements' course={result} className="result" key={result.id} />
+                                        }) : searchResults.map((result) => {
+                                            return <SearchResultCard caller='course' course={result} className="result" key={result.id} />
+                                        })
                             }
                         </div>
                     </div>
