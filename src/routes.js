@@ -2,11 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "./components/Login";
 import OAuthSignUp from "./components/OAuthSignUp";
 import ForgotPassword from "./components/ForgotPassword";
-import MyCourses from "./components/MyCourses";
 import MaterialsPage from "./components/MaterialsPage";
 import AnnouncementsPage from "./components/AnnouncementsPage";
 import Navbar from "./components/Navbar";
-import OrganizationCourses from "./components/OrganizationCourses";
 import App from "./App";
 import Guest from "./middleware/Guest";
 import User from "./middleware/User";
@@ -23,10 +21,10 @@ import AddCourse from "./components/AddCourse";
 import OrganizationAdmins from "./components/OrganizationAdmins";
 import Subdomains from "./components/Subdomains";
 import AddSubdomain from "./components/AddSubdomain";
-import SubCourses from "./components/SubCourses";
 import SubCourseMaterials from "./components/SubCourseMaterials";
 import SubCourseAnnouncements from "./components/SubCourseAnnouncements";
 import Admin from "./middleware/Admin";
+import CoursesPage from "./components/CoursesPage";
 
 const ROUTER = createBrowserRouter([
     {
@@ -40,11 +38,11 @@ const ROUTER = createBrowserRouter([
                         children: [
                             {
                                 path: 'my-courses',
-                                element: <MyCourses />
+                                element: <CoursesPage caller='user' />
                             },
                             {
                                 path: 'organization-courses',
-                                element: <OrganizationCourses />
+                                element: <CoursesPage caller='organization' />
                             },
                             {
                                 path: 'profile',
@@ -72,7 +70,7 @@ const ROUTER = createBrowserRouter([
                             },
                             {
                                 path: 'my-courses/:id/sub-courses',
-                                element: <SubCourses />
+                                element: <CoursesPage caller='subcourse' />
                             },
                             {
                                 path: 'my-courses/:id/sub-courses/:subId/materials',

@@ -67,7 +67,7 @@ function CourseCard(props) {
             <button className='course-subscribe' onClick={handleSubscribtion}>
                 <img className='course-subscribe-img' src={subscribtion ? Unsubscribe : Subscribe} />
             </button>
-            <Link to={props.caller === 'subcourses' ? `/my-courses/${props.parentId}/sub-courses/${props.childId}/materials` : `/my-courses/${props.id}/materials`} className='course-link'>
+            <Link to={props.caller === 'subcourse' ? `/my-courses/${props.parentId}/sub-courses/${props.childId}/materials` : `/my-courses/${props.id}/materials`} className='course-link'>
                 <div className='card-image-container'>
                     <img className="card-image" src={getRandomImage()} alt="" />
                 </div>
@@ -78,7 +78,7 @@ function CourseCard(props) {
                         <p className='course-instructor'>{courseAdmins.join(' - ')}</p>
                     </div>
                     <div className='platform-logo-container'>
-                        <img className='platform-logo' src={props.caller !== 'subcourses' ? CourseDog : props.name.includes('Course Admin') ? CourseDog : props.name.includes('Webhooks') ? WebHooks : Classroom} alt='' />
+                        <img className='platform-logo' src={props.caller !== 'subcourse' ? CourseDog : props.name.includes('Course Admin') ? CourseDog : props.name.includes('Webhooks') ? WebHooks : Classroom} alt='' />
                     </div>
                 </div>
             </Link>
