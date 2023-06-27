@@ -1,5 +1,6 @@
 import '../styles/SearchResultCard.css'
 import ClassroomLogo from '../assests/classroom.svg';
+import WebHooks from '../assests/webhooks.svg';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from '../api/axios';
@@ -13,7 +14,7 @@ function MaterialSearchResultCard(props) {
 
     useEffect(() => {
         getPDF();
-    }, [])
+    }, []);
 
     const getPDF = async () => {
 
@@ -35,19 +36,33 @@ function MaterialSearchResultCard(props) {
     var blob = new Blob([pdf], { type: 'application/pdf' });
     var blobURL = URL.createObjectURL(blob);
 
+    const handleDownload = () => {
+        const linkTag = document.createElement('a');
+        if (fileType === 'pdf') {
+            linkTag.setAttribute('href', blobURL);
+        } else {
+            linkTag.setAttribute('href', FILE_URL);
+            linkTag.setAttribute('download', true);
+        }
+        linkTag.setAttribute('target', '_blank');
+        document.body.appendChild(linkTag);
+        linkTag.click();
+        linkTag.remove();
+    }
+
     return (
-        <Link className='search-result-link' to={fileType === 'pdf' ? '/' + blobURL : FILE_URL} download={fileType === 'pdf' ? true : false}>
+        <button className='search-result-link' onClick={handleDownload}>
             <div className="result">
                 <div className="course-search-result-info">
                     <h2 className="course-search-result-title">{props.course.file_name}</h2>
-                    <h4 className="course-search-result-instructor">{props.course.instructor}</h4>
-                    <h5 className="course-search-result-year">{props.course.semester}</h5>
+                    {/* <h4 className="course-search-result-instructor">{props.course.instructor}</h4>
+                    <h5 className="course-search-result-year">{props.course.semester}</h5> */}
                 </div>
                 <div className="course-search-result-platform-container">
-                    <img className="course-search-result-platform-image" src={ClassroomLogo} />
+                    <img className="course-search-result-platform-image" src={props.course.title.includes('Webhooks') ? WebHooks : ClassroomLogo} />
                 </div>
             </div>
-        </Link>
+        </button>
     )
 }
 

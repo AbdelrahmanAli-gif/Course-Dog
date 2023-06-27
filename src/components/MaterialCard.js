@@ -7,6 +7,9 @@ import axios from '../api/axios';
 import { useParams } from 'react-router-dom';
 import { getAuthUser } from '../services/Storage';
 import SimilarMaterialCard from './SimilarMaterialCard';
+import WebHooks from '../assests/webhooks.svg';
+import PDF from '../assests/pdf.svg';
+import Download from '../assests/download.svg';
 
 function MaterialCard(props) {
 
@@ -20,7 +23,7 @@ function MaterialCard(props) {
 
     useEffect(() => {
         getPDF();
-    }, [])
+    }, []);
 
     const getPDF = async () => {
 
@@ -108,16 +111,15 @@ function MaterialCard(props) {
                 <button className='material-card' onClick={handleDownload}>
                     <div className='material-info'>
                         <div className='material-image-container'>
-                            <img className='file-image' src={FileLogo} />
+                            <img className='file-image' src={fileType === 'pdf' ? PDF : Download} />
                         </div>
                         <div className='material-data'>
                             <h3 className='material-title'>{props.fileName}</h3>
-                            <h4 className='material-provider'>Dr. Godzilla</h4>
                             <h5 className='material-date'>{parseDate(props.creationDate)}</h5>
                         </div>
                     </div>
                     <div className='platform-image-container'>
-                        <img className='platform-image' src={ClassroomLogo} />
+                        <img className='platform-image' src={props.title.includes('Webhooks') ? WebHooks : ClassroomLogo} />
                     </div>
                 </button>
                 <button className='similar-btn' onClick={getSimilarFiles}>Get Similar Materials</button>

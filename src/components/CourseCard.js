@@ -2,13 +2,17 @@ import '../styles/CourseCard.css'
 import ClassroomLogo from '../assests/classroom.svg';
 import Subscribe from '../assests/add.svg';
 import Unsubscribe from '../assests/remove.svg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from '../api/axios';
 import { getAuthUser } from '../services/Storage';
+import CourseDogLogo from '../assests/logo.svg';
+import WebHooks from '../assests/webhooks.svg';
+import ImagesArray from '../images/Images';
 
 function CourseCard(props) {
     const SUBSCRIBTION_URL = `courses/manage-user-courses/${props.id}/`;
+    const ADMIN_URL = `courses/course-admins/${props.id}/`;
     const user = getAuthUser();
 
     const [subscribtion, setSubscribtion] = useState(props.subscribed);
@@ -18,6 +22,24 @@ function CourseCard(props) {
             'Authorization': `Token ${user}`
         }
     };
+
+    const [courseAdmins, setCourseAdmins] = useState([]);
+    useEffect(() => {
+        getCourseAdmins();
+    }, []);
+
+    const getCourseAdmins = async () => {
+        try {
+            const response = axios.get(
+                ADMIN_URL,
+                config
+            );
+            setCourseAdmins((await response).data['course_admins']);
+        }
+        catch (error){
+            console.log(error);
+        }
+    }
 
     const handleSubscribtion = async () => {
         if (!subscribtion) {
@@ -45,6 +67,8 @@ function CourseCard(props) {
         }
     }
 
+    const imageNumber = Math.floor(Math.random() * 11);
+
     return (
         <div className="card">
             <button className='course-subscribe' onClick={handleSubscribtion}>
@@ -52,16 +76,16 @@ function CourseCard(props) {
             </button>
             <Link to={props.caller === 'subcourses' ? `/my-courses/${props.parentId}/sub-courses/${props.childId}/materials` : `/my-courses/${props.id}/materials`} className='course-link'>
                 <div className='card-image-container'>
-                    <img className="card-image" src={require('../assests/abstract-dark-blue-luxury-background-free-vector.jpg')} alt="" />
+                    <img className="card-image" src={ImagesArray[Math.floor(Math.random() * 11)]} alt="" />
                 </div>
                 <div className='course-data'>
                     <div className='course-info'>
                         <h5 className='course-year'>{props.code}</h5>
                         <h3 className='course-title'>{props.name}</h3>
-                        <p className='course-instructor'>Dr. Godzilla</p>
+                        <p className='course-instructor'>{courseAdmins.join(' - ')}</p>
                     </div>
                     <div className='platform-logo-container'>
-                        <img className='platform-logo' src={ClassroomLogo} alt='' />
+                        <img className='platform-logo' src={props.caller !== 'subcourses' ? CourseDogLogo : props.name.includes('Course Admin') ? CourseDogLogo : props.name.includes('Webhooks') ? WebHooks : ClassroomLogo} alt='' />
                     </div>
                 </div>
             </Link>

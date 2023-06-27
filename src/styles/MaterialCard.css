@@ -4,12 +4,13 @@
     justify-content: space-around;
     flex-direction: column;
     width: 100%;
+    padding: 0px 2rem;
 }
 
 .material-card-container {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
 }
 
@@ -79,12 +80,13 @@
 .similar-files {
     background-color: white;
     padding: 5px;
-    width: 80%;
+    width: 70%;
     margin-top: 5px;
     display: none;
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
+    align-self: flex-start;
 }
 
 .delete-btn {
@@ -96,6 +98,10 @@
     border: none;
     width: 35px;
     height: 35px;
+}
+
+.delete-btn:hover {
+    background-color: white;
 }
 
 .delete-icon {

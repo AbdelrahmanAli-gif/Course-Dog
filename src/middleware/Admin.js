@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { getAuthGroup, getAuthUser } from "../services/Storage";
+import { getAuthUser, getAuthGroup } from "../services/Storage";
 
-function User() {
+function Admin(){
 
     const authUser = getAuthUser();
     const authGroup = getAuthGroup();
@@ -10,12 +10,12 @@ function User() {
         <>
             {
                 authUser ? (
-                    authGroup === 'Student' ?
-                        <Outlet /> : <Navigate to={'/courses'} />
+                    authGroup === 'OrganizationAdmin' ?
+                        <Outlet /> : <Navigate to={'/my-courses'} />
                 ) : <Navigate to={'/'} />
             }
         </>
     );
 }
 
-export default User;
+export default Admin;

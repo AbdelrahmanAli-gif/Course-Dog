@@ -69,6 +69,7 @@ function SubCourseMaterials() {
                                                 id={value.id}
                                                 admin={isAdmin}
                                                 creationDate={value.creation_date}
+                                                title={value.title}
                                             />
                                         );
                                     })

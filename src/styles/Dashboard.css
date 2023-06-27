@@ -12,7 +12,7 @@
     align-items: center;
     width: 100%;
     justify-content: center;
-    /* flex-direction: row; */
+    position: relative;
 }
 
 .dashboard-title {
@@ -74,5 +74,6 @@
 }
 
 .dashboard-logout {
-    justify-self: end;
+    position: absolute;
+    right: 5%;
 }

@@ -26,13 +26,14 @@ import AddSubdomain from "./components/AddSubdomain";
 import SubCourses from "./components/SubCourses";
 import SubCourseMaterials from "./components/SubCourseMaterials";
 import SubCourseAnnouncements from "./components/SubCourseAnnouncements";
+import Admin from "./middleware/Admin";
 
 const ROUTER = createBrowserRouter([
     {
         element: <App />,
         children: [
             {
-                element: <Guest />,
+                element: <User />,
                 children: [
                     {
                         element: <Navbar />,
@@ -90,7 +91,7 @@ const ROUTER = createBrowserRouter([
                 ]
             },
             {
-                element: <User />,
+                element: <Guest />,
                 children: [
                     {
                         path: '/',
@@ -107,39 +108,44 @@ const ROUTER = createBrowserRouter([
                 ]
             },
             {
-                element: <Dashboard />,
+                element: <Admin />,
                 children: [
                     {
-                        path: '/courses',
-                        element: <DashboardCourses />
-                    },
-                    {
-                        path: '/courses/add-course',
-                        element: <AddCourse />
-                    },
-                    {
-                        path: '/courses/:id',
-                        element: <CourseAdmins />
-                    },
-                    {
-                        path: '/courses/:id/add-course-admin',
-                        element: <AddAdmin caller='course'/>
-                    },
-                    {
-                        path: '/organization-admins',
-                        element: <OrganizationAdmins />
-                    },
-                    {
-                        path: '/organization-admins/add-organization-admin',
-                        element: <AddAdmin caller='organization'/>
-                    },
-                    {
-                        path: '/subdomains',
-                        element: <Subdomains />
-                    },
-                    {
-                        path: '/subdomains/add-subdomain',
-                        element: <AddSubdomain />
+                        element: <Dashboard />,
+                        children: [
+                            {
+                                path: '/courses',
+                                element: <DashboardCourses />
+                            },
+                            {
+                                path: '/courses/add-course',
+                                element: <AddCourse />
+                            },
+                            {
+                                path: '/courses/:id',
+                                element: <CourseAdmins />
+                            },
+                            {
+                                path: '/courses/:id/add-course-admin',
+                                element: <AddAdmin caller='course' />
+                            },
+                            {
+                                path: '/organization-admins',
+                                element: <OrganizationAdmins />
+                            },
+                            {
+                                path: '/organization-admins/add-organization-admin',
+                                element: <AddAdmin caller='organization' />
+                            },
+                            {
+                                path: '/subdomains',
+                                element: <Subdomains />
+                            },
+                            {
+                                path: '/subdomains/add-subdomain',
+                                element: <AddSubdomain />
+                            }
+                        ]
                     }
                 ]
             }

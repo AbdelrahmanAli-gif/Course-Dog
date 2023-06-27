@@ -61,20 +61,20 @@ function Login() {
                 config
             );
 
-            const group = info.data['groups'];
+            const group = info.data['groups'][0];
             const org = info.data['organization'];
             setAuthUser(accessToken);
             setAuthGroup(group);
             setAuthOrg(org);
 
-            if (!group.includes('OrganizationAdmin')){
+            if (group === 'OrganizationAdmin'){
+                navigate('/courses');
+            } else {
                 await axios.get(
                     LOAD_COURSES_URL,
                     config
                 );
                 navigate('/my-courses');
-            } else {
-                navigate('/courses');
             }
             // setAuth({ user, pwd });
             
@@ -119,7 +119,6 @@ function Login() {
                             type="email"
                             id="username"
                             ref={userRef}
-                            autoComplete="off"
                             onChange={(e) => setUser(e.target.value)}
                             value={user}
                             required

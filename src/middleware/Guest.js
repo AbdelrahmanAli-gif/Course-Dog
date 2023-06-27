@@ -1,14 +1,19 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { getAuthUser } from "../services/Storage";
+import { getAuthUser, getAuthGroup } from "../services/Storage";
 
 function Guest(){
 
     const authUser = getAuthUser();
+    const authGroup = getAuthGroup();
+
 
     return (
         <>
             {
-                authUser ? <Outlet /> : <Navigate to={'/'} />
+                authUser ? (
+                    authGroup === 'Student' ?
+                        <Navigate to={'/my-courses'} /> : <Navigate to={'/courses'} />
+                ) : <Outlet />
             }
         </>
     );

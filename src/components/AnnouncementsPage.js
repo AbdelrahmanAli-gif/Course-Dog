@@ -33,7 +33,7 @@ function AnnouncementPage(){
                 config
             )
             setCourseName(response.data['course']['name'])
-            setMaterials(response.data['announcements']);
+            setMaterials(response.data['announcements'].reverse());
             setIsAdmin(response.data['is_course_admin']);
             setError({
                 errorState: false,

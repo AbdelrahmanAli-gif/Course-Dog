@@ -34,7 +34,7 @@ function MaterialPage() {
                 config
             )
             setCourseName(response.data['course']['name'])
-            setMaterials(response.data['materials']);
+            setMaterials(response.data['materials'].reverse());
             setIsAdmin(response.data['is_course_admin']);
             setError({
                 errorState: false,
@@ -73,6 +73,7 @@ function MaterialPage() {
                                                 id={value.id}
                                                 admin={isAdmin}
                                                 creationDate={value.creation_date}
+                                                title={value.title}
                                             />
                                         );
                                     })

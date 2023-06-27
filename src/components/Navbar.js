@@ -29,6 +29,7 @@ function Navbar() {
 
     useEffect(() => {
         setSearchResults([]);
+        setSearchTerm('');
     }, [navigator])
 
     function updateSearchTerm(newTerm) {
