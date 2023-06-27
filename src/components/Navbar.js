@@ -1,15 +1,11 @@
 import '../styles/Navbar.css'
-import Logo from '../assests/logo.svg';
-import SearchIcon from '../assests/search.svg';
-import UserIcon from '../assests/user.svg';
-import HamburgerMenu from '../assests/hamburger.svg';
-import Close from '../assests/close.svg';
 import { useEffect, useRef, useState } from 'react';
 import { CourseSearchService } from '../services/CourseSearchService';
 import { SearchResultCard } from './SearchResultCard';
 import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { getAuthUser, removeAuthGroup, removeAuthOrg, removeAuthUser } from '../services/Storage';
 import axios from '../api/axios';
+import { CourseDog, HamburgerMenu, Search, User, Close } from '../images/Images';
 
 function Navbar() {
 
@@ -124,7 +120,7 @@ function Navbar() {
                     <div className='navbar-first-section'>
                         <div className='navbar-identity'>
                             <div className='navbar-logo-container'>
-                                <img className='navbar-logo' src={Logo} alt='' />
+                                <img className='navbar-logo' src={CourseDog} alt='' />
                             </div>
                             <span className='navbar-title'>Course Dog</span>
                         </div>
@@ -141,7 +137,7 @@ function Navbar() {
                         <button className='mobile-logout' onClick={handleLogout}>Logout</button>
                         <div className='search-field'>
                             <div className='search-icon'>
-                                <img className='navbar-logo' src={SearchIcon} alt='' />
+                                <img className='navbar-logo' src={Search} alt='' />
                             </div>
                             <input
                                 className='search-input'
@@ -176,7 +172,7 @@ function Navbar() {
                 <div className='navbar-second-section'>
                     <div className='search-field'>
                         <div className='search-icon'>
-                            <img className='navbar-logo' src={SearchIcon} alt='' />
+                            <img className='navbar-logo' src={Search} alt='' />
                         </div>
                         <input
                             className='search-input'
@@ -203,7 +199,7 @@ function Navbar() {
                     </div>
                     <div className='user-logo-container'>
                         <Link className='user-logo-btn' to={'/profile'}>
-                            <img className='user-logo' src={UserIcon} alt='' />
+                            <img className='user-logo' src={User} alt='' />
                         </Link>
                         <select className='logout' onChange={handleLogout} defaultValue={''}>
                             <option value={''} disabled hidden></option>

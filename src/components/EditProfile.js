@@ -1,8 +1,7 @@
 import { useRef, useState } from 'react';
 import '../styles/EditProfile.css';
 import { getAuthUser } from '../services/Storage';
-import axios from '../api/axios';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function EditProfile() {
 

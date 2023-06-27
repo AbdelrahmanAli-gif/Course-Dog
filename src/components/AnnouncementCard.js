@@ -1,12 +1,10 @@
 import '../styles/AnnouncementCard.css';
-import ClassroomLogo from '../assests/classroom.svg';
-import Delete from '../assests/delete.svg';
 import { useParams } from 'react-router-dom';
 import { getAuthUser } from '../services/Storage';
 import axios from '../api/axios';
 import { useState } from 'react';
 import SimilarAnnouncemetCard from './SimilarAnnouncementCard';
-import WebHooks from '../assests/webhooks.svg';
+import { Classroom, WebHooks, Delete } from '../images/Images';
 
 function AnnouncementCard(props) {
 
@@ -63,7 +61,7 @@ function AnnouncementCard(props) {
                 <div className='announcement-card'>
                     <div className='user-info'>
                         <div className='user-image-container'>
-                            <img className='user-image' src={props.title.includes('Webhooks') ? WebHooks : ClassroomLogo} />
+                            <img className='user-image' src={props.title.includes('Webhooks') ? WebHooks : Classroom} />
                         </div>
                         <h2 className='announcement-publisher'>{props.title}</h2>
                     </div>

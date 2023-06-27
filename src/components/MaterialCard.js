@@ -1,15 +1,10 @@
 import '../styles/MaterialCard.css';
-import ClassroomLogo from '../assests/classroom.svg';
-import FileLogo from '../assests/file.svg'
-import Delete from '../assests/delete.svg';
 import { useState, useEffect } from 'react';
 import axios from '../api/axios';
 import { useParams } from 'react-router-dom';
 import { getAuthUser } from '../services/Storage';
 import SimilarMaterialCard from './SimilarMaterialCard';
-import WebHooks from '../assests/webhooks.svg';
-import PDF from '../assests/pdf.svg';
-import Download from '../assests/download.svg';
+import { Classroom, Delete, WebHooks, PDF, Download } from '../images/Images';
 
 function MaterialCard(props) {
 
@@ -119,7 +114,7 @@ function MaterialCard(props) {
                         </div>
                     </div>
                     <div className='platform-image-container'>
-                        <img className='platform-image' src={props.title.includes('Webhooks') ? WebHooks : ClassroomLogo} />
+                        <img className='platform-image' src={props.title.includes('Webhooks') ? WebHooks : Classroom} />
                     </div>
                 </button>
                 <button className='similar-btn' onClick={getSimilarFiles}>Get Similar Materials</button>

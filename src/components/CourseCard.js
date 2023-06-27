@@ -1,14 +1,9 @@
 import '../styles/CourseCard.css'
-import ClassroomLogo from '../assests/classroom.svg';
-import Subscribe from '../assests/add.svg';
-import Unsubscribe from '../assests/remove.svg'
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from '../api/axios';
 import { getAuthUser } from '../services/Storage';
-import CourseDogLogo from '../assests/logo.svg';
-import WebHooks from '../assests/webhooks.svg';
-import ImagesArray from '../images/Images';
+import { Classroom, WebHooks, Subscribe, Unsubscribe, CourseDog, getRandomImage } from '../images/Images';
 
 function CourseCard(props) {
     const SUBSCRIBTION_URL = `courses/manage-user-courses/${props.id}/`;
@@ -67,8 +62,6 @@ function CourseCard(props) {
         }
     }
 
-    const imageNumber = Math.floor(Math.random() * 11);
-
     return (
         <div className="card">
             <button className='course-subscribe' onClick={handleSubscribtion}>
@@ -76,7 +69,7 @@ function CourseCard(props) {
             </button>
             <Link to={props.caller === 'subcourses' ? `/my-courses/${props.parentId}/sub-courses/${props.childId}/materials` : `/my-courses/${props.id}/materials`} className='course-link'>
                 <div className='card-image-container'>
-                    <img className="card-image" src={ImagesArray[Math.floor(Math.random() * 11)]} alt="" />
+                    <img className="card-image" src={getRandomImage()} alt="" />
                 </div>
                 <div className='course-data'>
                     <div className='course-info'>
@@ -85,7 +78,7 @@ function CourseCard(props) {
                         <p className='course-instructor'>{courseAdmins.join(' - ')}</p>
                     </div>
                     <div className='platform-logo-container'>
-                        <img className='platform-logo' src={props.caller !== 'subcourses' ? CourseDogLogo : props.name.includes('Course Admin') ? CourseDogLogo : props.name.includes('Webhooks') ? WebHooks : ClassroomLogo} alt='' />
+                        <img className='platform-logo' src={props.caller !== 'subcourses' ? CourseDog : props.name.includes('Course Admin') ? CourseDog : props.name.includes('Webhooks') ? WebHooks : Classroom} alt='' />
                     </div>
                 </div>
             </Link>

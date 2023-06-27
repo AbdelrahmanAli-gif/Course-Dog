@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import '../styles/ImportCourse.css';
-import Image from '../assests/Untitled.png';
 import { getAuthUser } from "../services/Storage";
 import axios from "../api/axios";
+import { DriveId } from "../images/Images";
 
 function ImportCourse() {
 
@@ -169,7 +169,7 @@ function ImportCourse() {
                         (
                             <>
                                 <div className="drive-id-container">
-                                    {source === 'drive' ? <img className="id-image" src={Image} /> : null}
+                                    {source === 'drive' ? <img className="id-image" src={DriveId} /> : null}
                                     <label className="form-label" htmlFor="drive-id">{source === 'drive' ? 'Drive ID' : 'Classroom ID'}</label>
                                     {source === 'drive' ?
                                         (
@@ -244,7 +244,6 @@ function ImportCourse() {
                             </>
                         )
                 }
-
             </form>
         </div>
     )

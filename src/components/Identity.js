@@ -1,10 +1,10 @@
 import '../styles/Identity.css'
-import Logo from '../assests/logo.svg'
+import { CourseDog } from '../images/Images';
 
-function Identity(){
+function Identity() {
     return (
         <div className='identity'>
-            <img className='logo' src={Logo} alt="logo" />
+            <img className='logo' src={CourseDog} alt="logo" />
             <h2 className='title'>Course Dog</h2>
         </div>
     )

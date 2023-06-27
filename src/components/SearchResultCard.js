@@ -1,11 +1,10 @@
 import MaterialSearchResultCard from "./MaterialSearchResultCard";
-import ClassroomLogo from '../assests/classroom.svg';
 import { Link } from 'react-router-dom';
 import AnnouncementSearchResultCard from "./AnnouncementSearchResultCard";
-import CourseDogLogo from '../assests/logo.svg';
 import { useState, useEffect } from "react";
 import axios from '../api/axios';
 import { getAuthUser } from '../services/Storage';
+import { CourseDog } from "../images/Images";
 
 export function SearchResultCard(props) {
 
@@ -53,7 +52,7 @@ export function SearchResultCard(props) {
                                         <h4 className="course-search-result-instructor">{courseAdmins.join(' - ')}</h4>
                                     </div>
                                     <div className="course-search-result-platform-container">
-                                        <img className="course-search-result-platform-image" src={CourseDogLogo} />
+                                        <img className="course-search-result-platform-image" src={CourseDog} />
                                     </div>
                                 </div>
                             </Link>

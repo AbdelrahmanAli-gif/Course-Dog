@@ -1,9 +1,5 @@
 import '../styles/SearchResultCard.css'
-import ClassroomLogo from '../assests/classroom.svg';
-import WebHooks from '../assests/webhooks.svg';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import axios from '../api/axios';
+import { Classroom, WebHooks } from '../images/Images';
 
 function AnnouncementSearchResultCard(props) {
     return (
@@ -14,7 +10,7 @@ function AnnouncementSearchResultCard(props) {
                 {/* <h5 className="course-search-result-year">{props.course.semester}</h5> */}
             </div>
             <div className="course-search-result-platform-container">
-                <img className="course-search-result-platform-image" src={props.course.title.includes('Webhooks') ? WebHooks : ClassroomLogo} />
+                <img className="course-search-result-platform-image" src={props.course.title.includes('Webhooks') ? WebHooks : Classroom} />
             </div>
         </div>
     )
