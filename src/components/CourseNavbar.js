@@ -8,7 +8,7 @@ function CourseNavbar(props) {
         <>
             {
                 props.caller === 'subcourse' ? (
-                    props.activeMaterials ? (
+                    props.data === 'materials' ? (
                         <div className="course-navbar">
                             <h2 className='course-navbar-title active'>Materials</h2>
                             <Link to={`/my-courses/${id}/sub-courses/${subId}/announcements`} className='nav-link'>
@@ -24,7 +24,7 @@ function CourseNavbar(props) {
                         </div>
                     )
                 ) : (
-                    props.activeMaterials ? (
+                    props.data === 'materials' ? (
                         <div className="course-navbar">
                             <h2 className='course-navbar-title active'>Materials</h2>
                             <Link to={`/my-courses/${id}/announcements`} className='nav-link'>
