@@ -37,7 +37,7 @@ function MaterialSearchResultCard(props) {
     const handleDownload = () => {
         const linkTag = document.createElement('a');
         if (fileType === 'pdf') {
-            linkTag.setAttribute('href', blobURL);
+            linkTag.setAttribute('href', FILE_URL);
         } else {
             linkTag.setAttribute('href', FILE_URL);
             linkTag.setAttribute('download', true);
