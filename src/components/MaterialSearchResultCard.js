@@ -56,9 +56,6 @@ function MaterialSearchResultCard(props) {
                     {/* <h4 className="course-search-result-instructor">{props.course.instructor}</h4>
                     <h5 className="course-search-result-year">{props.course.semester}</h5> */}
                 </div>
-                <div className="course-search-result-platform-container">
-                    <img className="course-search-result-platform-image" src={props.course.title.includes('Webhooks') ? WebHooks : Classroom} />
-                </div>
             </div>
         </button>
     )
