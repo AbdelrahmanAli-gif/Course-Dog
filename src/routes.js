@@ -2,8 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "./components/Login";
 import OAuthSignUp from "./components/OAuthSignUp";
 import ForgotPassword from "./components/ForgotPassword";
-import MaterialsPage from "./components/MaterialsPage";
-import AnnouncementsPage from "./components/AnnouncementsPage";
 import Navbar from "./components/Navbar";
 import App from "./App";
 import Guest from "./middleware/Guest";
@@ -21,10 +19,9 @@ import AddCourse from "./components/AddCourse";
 import OrganizationAdmins from "./components/OrganizationAdmins";
 import Subdomains from "./components/Subdomains";
 import AddSubdomain from "./components/AddSubdomain";
-import SubCourseMaterials from "./components/SubCourseMaterials";
-import SubCourseAnnouncements from "./components/SubCourseAnnouncements";
 import Admin from "./middleware/Admin";
 import CoursesPage from "./components/CoursesPage";
+import CourseDataPage from "./components/CourseDataPage";
 
 const ROUTER = createBrowserRouter([
     {
@@ -54,11 +51,11 @@ const ROUTER = createBrowserRouter([
                             },
                             {
                                 path: 'my-courses/:id/materials',
-                                element: <MaterialsPage />,
+                                element: <CourseDataPage caller='course' data='materials' />,
                             },
                             {
                                 path: 'my-courses/:id/announcements',
-                                element: <AnnouncementsPage />,
+                                element: <CourseDataPage caller='course' data='announcements' />,
                             },
                             {
                                 path: 'my-courses/:id/materials/add',
@@ -74,11 +71,11 @@ const ROUTER = createBrowserRouter([
                             },
                             {
                                 path: 'my-courses/:id/sub-courses/:subId/materials',
-                                element: <SubCourseMaterials />
+                                element: <CourseDataPage caller='subcourse' data='materials' />
                             },
                             {
                                 path: 'my-courses/:id/sub-courses/:subId/announcements',
-                                element: <SubCourseAnnouncements />
+                                element: <CourseDataPage caller='subcourse' data='announcements' />
                             },
                             {
                                 path: 'import-course',
