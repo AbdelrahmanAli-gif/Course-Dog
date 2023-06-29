@@ -37,7 +37,7 @@ function MaterialSearchResultCard(props) {
     const handleDownload = () => {
         const linkTag = document.createElement('a');
         if (fileType === 'pdf') {
-            linkTag.setAttribute('href', blobURL);
+            linkTag.setAttribute('href', FILE_URL);
         } else {
             linkTag.setAttribute('href', FILE_URL);
             linkTag.setAttribute('download', true);
@@ -55,9 +55,6 @@ function MaterialSearchResultCard(props) {
                     <h2 className="course-search-result-title">{props.course.file_name}</h2>
                     {/* <h4 className="course-search-result-instructor">{props.course.instructor}</h4>
                     <h5 className="course-search-result-year">{props.course.semester}</h5> */}
-                </div>
-                <div className="course-search-result-platform-container">
-                    <img className="course-search-result-platform-image" src={props.course.title.includes('Webhooks') ? WebHooks : Classroom} />
                 </div>
             </div>
         </button>
