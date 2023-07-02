@@ -30,9 +30,9 @@ function Navbar() {
     useEffect(() => {
         setSearchResults([]);
         setSearchTerm('');
-        if (url.includes('materials')){
+        if (url.includes('materials')) {
             getMaterials();
-        } else if (url.includes('announcements')){
+        } else if (url.includes('announcements')) {
             getAnnouncements();
         } else {
             getCourses();
@@ -148,6 +148,11 @@ function Navbar() {
         navigator('/');
     }
 
+    const clearSearch = () => {
+        setSearchResults([]);
+        setSearchTerm('');
+    }
+
     return (
         <>
             <div className='navbar'>
@@ -173,6 +178,9 @@ function Navbar() {
                         <div className='search-field'>
                             <div className='search-icon'>
                                 <img className='navbar-logo' src={Search} alt='' />
+                            </div>
+                            <div className='clear-icon' onClick={clearSearch} style={{ display: searchTerm !== '' ? 'block' : 'none' }}>
+                                <img className='navbar-logo' src={Close} />
                             </div>
                             <input
                                 className='search-input'
@@ -208,6 +216,9 @@ function Navbar() {
                     <div className='search-field'>
                         <div className='search-icon'>
                             <img className='navbar-logo' src={Search} alt='' />
+                        </div>
+                        <div className='clear-icon' onClick={clearSearch} style={{ display: searchTerm !== '' ? 'block' : 'none' }}>
+                            <img className='navbar-logo' src={Close} />
                         </div>
                         <input
                             className='search-input'

@@ -72,14 +72,21 @@
 
 .search-field {
     display: flex;
+    position: relative;
 }
 
-.search-icon {
+.search-icon, .clear-icon {
     background-color: white;
     border-radius: 5px 0px 0px 5px;
     border: none;
     padding: 5px 5px;
     width: 25px;
+}
+
+.clear-icon {
+    position: absolute;
+    right: 5px;
+    z-index: 1;
 }
 
 .search-input {

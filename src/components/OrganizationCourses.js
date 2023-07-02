@@ -84,7 +84,10 @@ function OrganizationCourses() {
             <div className='content'>
                 <div className='courses-btn-container'>
                     <h1 className='page-title'>{`${userOrg} COURSES`.toUpperCase()}</h1>
-                    <Link className='courses-btn' to={'/my-courses'}>My Courses</Link>
+                    <div className='courses-btns-container'>
+                        <Link className='courses-btn' to={'/import-course'}>Import Course</Link>
+                        <Link className='courses-btn' to={'/my-courses'}>My Courses</Link>
+                    </div>
                 </div>
                 <div className='courses-container'>
                     {
