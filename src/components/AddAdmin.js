@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getAuthUser } from "../services/Storage";
 import '../styles/DashboardAdd.css';
+import { baseURL } from "../api/axios";
 
 function AddCourseAdmin(props) {
 
@@ -36,7 +37,7 @@ function AddCourseAdmin(props) {
         };
 
         if (props.caller === 'course') {
-            await fetch(`http://127.0.01:8000/organization/manage-course-admins/${id}/`, requestOptions)
+            await fetch(`${baseURL}organization/manage-course-admins/${id}/`, requestOptions)
                 .then(async (response) => { // to resolve the promise
 
                     const res = await response.json(); // to get the data
@@ -56,7 +57,7 @@ function AddCourseAdmin(props) {
                 .catch(error => console.log('error', error));
         }
         else {
-            await fetch("http://127.0.01:8000/organization/organization-admins/", requestOptions)
+            await fetch(`${baseURL}organization/organization-admins/`, requestOptions)
                 .then(async (response) => { // to resolve the promise
 
                     const res = await response.json(); // to get the data

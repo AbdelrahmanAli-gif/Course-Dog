@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import '../styles/AddMaterial.css';
 import { getAuthUser } from '../services/Storage';
 import { useNavigate, useParams } from 'react-router-dom';
+import { baseURL } from '../api/axios';
 
 function AddMaterial() {
 
@@ -25,7 +26,7 @@ function AddMaterial() {
             redirect: 'follow'
         };
 
-        fetch(`http://127.0.0.1:8000/materials/upload-material/${id}/`, requestOptions)
+        fetch(`${baseURL}materials/upload-material/${id}/`, requestOptions)
             .then(response => navigator(`/my-courses/${id}/materials`))
             .catch(error => console.log('error', error));
     }

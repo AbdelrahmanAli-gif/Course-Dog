@@ -25,7 +25,7 @@ function EditProfile() {
             body: formdata,
             redirect: 'follow'
         };
-        fetch("http://127.0.0.1:8000/user-profile/profile/", requestOptions)
+        fetch(`${baseURL}user-profile/profile/`, requestOptions)
             .then(response => navigator('/profile'))
             .catch(error => console.log('error', error));
     }

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import '../styles/ImportCourse.css';
 import { getAuthUser } from "../services/Storage";
-import axios from "../api/axios";
+import axios, { baseURL } from "../api/axios";
 import { DriveId } from "../images/Images";
 
 function ImportCourse() {
@@ -71,7 +71,7 @@ function ImportCourse() {
                 redirect: 'follow'
             };
 
-            await fetch("http://127.0.0.1:8000/courses/load-drive/", requestOptions)
+            await fetch(`${baseURL}courses/load-drive/`, requestOptions)
                 .then(async (response) => { // to resolve the promise
 
                     const res = await response.json(); // to get the data
@@ -107,7 +107,7 @@ function ImportCourse() {
                 redirect: 'follow'
             };
 
-            await fetch("http://127.0.0.1:8000/courses/load-classroom/", requestOptions)
+            await fetch(`${baseURL}courses/load-classroom/`, requestOptions)
                 .then(async (response) => { // to resolve the promise
 
                     const res = await response.json(); // to get the data

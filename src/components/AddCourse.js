@@ -39,7 +39,7 @@ function AddCourse() {
             redirect: 'follow'
         };
 
-        await fetch("http://127.0.01:8000/organization/manage-organization-courses/", requestOptions)
+        await fetch(`${baseURL}organization/manage-organization-courses/`, requestOptions)
             .then(async (response) => { // to resolve the promise
 
                 const res = await response.json(); // to get the data

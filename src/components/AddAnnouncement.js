@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import '../styles/AddAnnouncement.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getAuthUser } from '../services/Storage';
+import { baseURL } from '../api/axios';
 
 function AddAnnouncement() {
 
@@ -36,7 +37,7 @@ function AddAnnouncement() {
             body: formdata,
             redirect: 'follow'
         };
-        fetch(`http://127.0.0.1:8000/announcements/manage-announcements/${id}/`, requestOptions)
+        fetch(`${baseURL}announcements/manage-announcements/${id}/`, requestOptions)
             .then(response => navigate(`/my-courses/${id}/announcements`))
             .catch(error => console.log('error', error));
     }

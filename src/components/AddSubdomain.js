@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { getAuthOrg, getAuthUser } from "../services/Storage";
+import { baseURL } from "../api/axios";
 
 function AddSubdomain() {
 
@@ -33,7 +34,7 @@ function AddSubdomain() {
             redirect: 'follow'
         };
 
-        await fetch(`http://127.0.01:8000/organization/organization-data/${org}/`, requestOptions)
+        await fetch(`${baseURL}organization/organization-data/${org}/`, requestOptions)
             .then(async (response) => { // to resolve the promise
 
                 const res = await response.json(); // to get the data

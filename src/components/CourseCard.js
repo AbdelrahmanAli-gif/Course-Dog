@@ -1,7 +1,7 @@
 import '../styles/CourseCard.css'
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from '../api/axios';
+import axios, { baseURL } from '../api/axios';
 import { getAuthUser } from '../services/Storage';
 import { Classroom, WebHooks, Subscribe, Unsubscribe, CourseDog, getRandomImage } from '../images/Images';
 
@@ -45,7 +45,7 @@ function CourseCard(props) {
                 headers: myHeaders,
                 redirect: 'follow'
             };
-            fetch(`http://127.0.0.1:8000/courses/manage-user-courses/${props.id}/`, requestOptions)
+            fetch(`${baseURL}courses/manage-user-courses/${props.id}/`, requestOptions)
                 .then(response => setSubscribtion(true))
                 .catch(error => console.log('error', error));
         } else {
