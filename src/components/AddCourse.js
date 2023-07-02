@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { getAuthUser } from "../services/Storage";
 import '../styles/DashboardAdd.css';
+import { baseURL } from "../api/axios";
 
 function AddCourse() {
 

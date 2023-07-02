@@ -40,6 +40,7 @@ function DashboardCourses() {
                 </Link>
             </div>
             <div className="results-container">
+                <div className="course-instruction">Select a course to add course admin</div>
                 {
                     courses.length === 0 ? 'No courses' : 
                     courses.map((value) => {

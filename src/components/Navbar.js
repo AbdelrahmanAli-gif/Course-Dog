@@ -171,9 +171,9 @@ function Navbar() {
                 </button>
                 <div className='mobile-navbar' style={clicked ? { display: 'block' } : { display: 'none' }}>
                     <div className='mobile-navbar-list'>
-                        <Link className='navbar-link' to={'/my-courses'}>My Courses</Link>
-                        <Link className='navbar-link' to={'/organization-courses'}>Organization Courses</Link>
-                        <Link className='navbar-link' to={'/profile'}>Profile</Link>
+                        <Link className={url.includes('my-courses') ? 'navbar-active navbar-link' : 'navbar-link'} to={'/my-courses'}>My Courses</Link>
+                        <Link className={url.includes('organization-courses') ? 'navbar-active navbar-link' : 'navbar-link'} to={'/organization-courses'}>Organization Courses</Link>
+                        <Link className={url.includes('profile') ? 'navbar-active navbar-link' : 'navbar-link'} to={'/profile'}>Profile</Link>
                         <button className='mobile-logout' onClick={handleLogout}>Logout</button>
                         <div className='search-field'>
                             <div className='search-icon'>
@@ -208,8 +208,8 @@ function Navbar() {
                     </div>
                 </div>
                 <div className='links-section'>
-                    <Link className='navbar-link' to={'/my-courses'}>My Courses</Link>
-                    <Link className='navbar-link' to={'/organization-courses'}>Organization Courses</Link>
+                    <Link className={url.includes('my-courses') ? 'navbar-active navbar-link' : 'navbar-link'} to={'/my-courses'}>My Courses</Link>
+                    <Link className={url.includes('organization-courses') ? 'navbar-active navbar-link' : 'navbar-link'} to={'/organization-courses'}>Organization Courses</Link>
                     {/* <Link className='navbar-link' to={'/profile'}>Profile</Link> */}
                 </div>
                 <div className='navbar-second-section'>

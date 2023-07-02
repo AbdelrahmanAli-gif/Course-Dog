@@ -1,5 +1,5 @@
 .dashboard-navbar {
-    margin-top: 10px;
+    /* margin-top: 10px; */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -24,19 +24,26 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    background-color: #282828;
+    height: 60px;
 }
 
 .dashboard-navbar-link {
     text-decoration: none;
 }
 
-.dashboard-btn {
+.dashboard-btn, .navbar-dashboard-btn {
     padding: 5px;
     background-color: #282828;
     color: white;
     border-radius: 5px;
     outline: none;
+}
+
+.navbar-dashboard-btn {
+    border: none;
+    font-size: 16px;
 }
 
 .dashboard-btn:hover {
@@ -73,7 +80,9 @@
     padding: 20px;
 }
 
-.dashboard-logout {
-    position: absolute;
-    right: 5%;
+.course-instruction {
+    text-align: center;
+    font-size: 22px;
+    width: 100%;
+    font-weight: bold;
 }

@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import '../styles/EditProfile.css';
 import { getAuthUser } from '../services/Storage';
 import { useNavigate } from 'react-router-dom';
+import { baseURL } from '../api/axios';
 
 function EditProfile() {
 
