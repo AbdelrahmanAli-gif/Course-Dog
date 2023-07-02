@@ -10,34 +10,34 @@ function MaterialSearchResultCard(props) {
     const fileType = FILE_URL.substring(FILE_URL.length - 3);
     const [pdf, setPDF] = useState();
 
-    useEffect(() => {
-        getPDF();
-    }, []);
+    // useEffect(() => {
+    //     getPDF();
+    // }, []);
 
-    const getPDF = async () => {
+    // const getPDF = async () => {
 
-        let config = {
-            responseType: 'blob'
-        }
+    //     let config = {
+    //         responseType: 'blob'
+    //     }
 
-        try {
-            const response = await axios.get(
-                MATERIAL_URL,
-                config
-            );
-            setPDF(response.data);
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
-    var blob = new Blob([pdf], { type: 'application/pdf' });
-    var blobURL = URL.createObjectURL(blob);
+    //     try {
+    //         const response = await axios.get(
+    //             MATERIAL_URL,
+    //             config
+    //         );
+    //         setPDF(response.data);
+    //     }
+    //     catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+    // var blob = new Blob([pdf], { type: 'application/pdf' });
+    // var blobURL = URL.createObjectURL(blob);
 
     const handleDownload = () => {
         const linkTag = document.createElement('a');
         if (fileType === 'pdf') {
-            linkTag.setAttribute('href', blobURL);
+            linkTag.setAttribute('href', FILE_URL);
         } else {
             linkTag.setAttribute('href', FILE_URL);
             linkTag.setAttribute('download', true);
@@ -49,16 +49,16 @@ function MaterialSearchResultCard(props) {
     }
 
     return (
-        <button className='search-result-link' onClick={handleDownload}>
+        <button className='search-result-btn' onClick={handleDownload}>
             <div className="result">
-                <div className="course-search-result-info">
+                <div className="material-search-result-info">
                     <h2 className="course-search-result-title">{props.course.file_name}</h2>
                     {/* <h4 className="course-search-result-instructor">{props.course.instructor}</h4>
                     <h5 className="course-search-result-year">{props.course.semester}</h5> */}
                 </div>
-                <div className="course-search-result-platform-container">
+                {/* <div className="course-search-result-platform-container">
                     <img className="course-search-result-platform-image" src={props.course.title.includes('Webhooks') ? WebHooks : Classroom} />
-                </div>
+                </div> */}
             </div>
         </button>
     )

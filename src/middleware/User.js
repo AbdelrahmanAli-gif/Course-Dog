@@ -10,7 +10,7 @@ function User() {
         <>
             {
                 authUser ? (
-                    authGroup === 'Student' ?
+                    authGroup === 'Student' || authGroup === 'CourseAdmin' ?
                         <Outlet /> : <Navigate to={'/courses'} />
                 ) : <Navigate to={'/'} />
             }

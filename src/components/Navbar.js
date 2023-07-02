@@ -12,8 +12,12 @@ function Navbar() {
     // const searchService = new CourseSearchService()
 
     const navigator = useNavigate();
+    const url = window.location.href;
 
     const [searchTerm, setSearchTerm] = useState("");
+    const [courses, setCourses] = useState([]);
+    const [materials, setMaterials] = useState([]);
+    const [announcements, setAnnouncements] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
     const searchInputRef = useRef();
 
@@ -26,13 +30,19 @@ function Navbar() {
     useEffect(() => {
         setSearchResults([]);
         setSearchTerm('');
+        if (url.includes('materials')){
+            getMaterials();
+        } else if (url.includes('announcements')){
+            getAnnouncements();
+        } else {
+            getCourses();
+        }
     }, [navigator])
 
     function updateSearchTerm(newTerm) {
         setSearchTerm(newTerm);
         initiateSearch();
     }
-
 
     function handleSearchInputFocus(isFocused) {
         // return;
@@ -57,7 +67,29 @@ function Navbar() {
         }
     };
 
-    const url = window.location.href;
+    const getCourses = async () => {
+        const response = await axios.get(
+            GET_USER_COURSES_URL,
+            config
+        );
+        setCourses(response.data);
+    }
+
+    const getMaterials = async () => {
+        const response = await axios.get(
+            GET_COURSE_MATERIALS,
+            config
+        );
+        setMaterials(response.data['materials']);
+    }
+
+    const getAnnouncements = async () => {
+        const response = await axios.get(
+            GET_COURSE_ANNOUNCEMENTS,
+            config
+        );
+        setAnnouncements(response.data['announcements']);
+    }
 
     async function initiateSearch() {
         // searchService.seachCourses(searchTerm)
@@ -67,31 +99,34 @@ function Navbar() {
         if (searchTerm === "") return [];
         try {
             if (url.includes('materials')) {
-                const response = await axios.get(
-                    GET_COURSE_MATERIALS,
-                    config
-                );
-                const materials = response.data['materials'];
+                if (searchTerm === "") setSearchResults([]);
+                // const response = await axios.get(
+                //     GET_COURSE_MATERIALS,
+                //     config
+                // );
+                // const materials = response.data['materials'];
                 setSearchResults(materials.filter((material) => {
                     return material.file_name.toLowerCase().includes(searchTerm.toLowerCase());
                 }));
             }
             else if (url.includes('announcement')) {
-                const response = await axios.get(
-                    GET_COURSE_ANNOUNCEMENTS,
-                    config
-                );
-                const announcements = response.data['announcements'];
+                if (searchTerm === "") return [];
+                // const response = await axios.get(
+                //     GET_COURSE_ANNOUNCEMENTS,
+                //     config
+                // );
+                // const announcements = response.data['announcements'];
                 setSearchResults(announcements.filter((announcement) => {
                     return announcement.content.toLowerCase().includes(searchTerm.toLocaleLowerCase())
                 }));
             }
             else {
-                const response = await axios.get(
-                    GET_USER_COURSES_URL,
-                    config
-                );
-                const courses = response.data;
+                if (searchTerm === "") return [];
+                // const response = await axios.get(
+                //     GET_USER_COURSES_URL,
+                //     config
+                // );
+                // const courses = response.data;
                 setSearchResults(courses.filter((course) => {
                     return course.name.toLowerCase().includes(searchTerm.toLowerCase());
                 }));

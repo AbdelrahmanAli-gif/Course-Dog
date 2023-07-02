@@ -17,20 +17,25 @@ export function SearchResultCard(props) {
             'Authorization': `Token ${user}`
         }
     };
-    
+
+    const url = window.location.href;
+    console.log(url);
+
     useEffect(() => {
-        getCourseAdmins();
-    }, []);
+        if (!url.includes('materials') && !url.includes('announcements')) {
+            getCourseAdmins();
+        }
+    }, [url]);
 
     const getCourseAdmins = async () => {
         try {
-            const response = axios.get(
+            const response = await axios.get(
                 ADMIN_URL,
                 config
             );
-            setCourseAdmins((await response).data['course_admins']);
+            setCourseAdmins(response.data['course_admins']);
         }
-        catch (error){
+        catch (error) {
             console.log(error);
         }
     }

@@ -32,3 +32,14 @@
 .course-search-result-platform-image {
     width: 100%;
 }
+
+.search-result-btn {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+.material-search-result-info {
+    width: 100%;
+}

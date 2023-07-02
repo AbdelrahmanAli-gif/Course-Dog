@@ -11,7 +11,7 @@ function Guest(){
         <>
             {
                 authUser ? (
-                    authGroup === 'Student' ?
+                    authGroup === 'Student' || authGroup === 'CourseAdmin' ?
                         <Navigate to={'/my-courses'} /> : <Navigate to={'/courses'} />
                 ) : <Outlet />
             }
