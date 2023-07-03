@@ -1,6 +1,6 @@
 import '../styles/SimilarMaterialCard.css';
 import { useState, useEffect } from 'react';
-import axios from '../api/axios';
+import axios, { baseURL } from '../api/axios';
 
 function SimilarMaterialCard(props) {
 
