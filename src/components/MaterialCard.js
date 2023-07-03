@@ -1,6 +1,6 @@
 import '../styles/MaterialCard.css';
 import { useState, useEffect } from 'react';
-import axios from '../api/axios';
+import axios, { baseURL } from '../api/axios';
 import { useParams } from 'react-router-dom';
 import { getAuthUser } from '../services/Storage';
 import SimilarMaterialCard from './SimilarMaterialCard';
@@ -8,7 +8,7 @@ import { Classroom, Delete, WebHooks, PDF, Download } from '../images/Images';
 
 function MaterialCard(props) {
 
-    const FILE_URL = 'http://127.0.0.1:8000' + props.fileLink;
+    const FILE_URL = baseURL.slice(0, -1) + props.fileLink;
     const MATERIAL_URL = `files/course_material/${props.fileName}`;
     const fileType = FILE_URL.substring(FILE_URL.length - 3);
     const SIMILAR_FILES_URL = `materials/similar-materials/${props.id}/`;

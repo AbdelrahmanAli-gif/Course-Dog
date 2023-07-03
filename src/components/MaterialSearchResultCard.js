@@ -1,11 +1,11 @@
 import '../styles/SearchResultCard.css'
 import { useState, useEffect } from 'react';
-import axios from '../api/axios';
+import axios, { baseURL } from '../api/axios';
 import { Classroom, WebHooks } from '../images/Images';
 
 function MaterialSearchResultCard(props) {
 
-    const FILE_URL = 'http://127.0.0.1:8000' + props.course.file;
+    const FILE_URL = baseURL.slice(0, -1) + props.course.file;
     const MATERIAL_URL = `files/course_material/${props.file_name}`;
     const fileType = FILE_URL.substring(FILE_URL.length - 3);
     const [pdf, setPDF] = useState();

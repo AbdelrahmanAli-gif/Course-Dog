@@ -1,3 +1,4 @@
+import { baseURL } from '../api/axios';
 import '../styles/LoginForm.css';
 import Identity from "./Identity";
 import { useState } from "react";
@@ -6,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 function OAuthSignUp() {
-    const OAUTH_URL = "http://127.0.0.1:8000/accounts/google/login/?process=login";
+    const OAUTH_URL = `${baseURL}accounts/google/login/?process=login`;
     // const SIGNUP_URL = 'auth/auth/users/';
     const [errorMsg, setErrorMsg] = useState("");
     const [errorColor, setErrorColor] = useState("");

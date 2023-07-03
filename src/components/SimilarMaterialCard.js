@@ -4,7 +4,7 @@ import axios from '../api/axios';
 
 function SimilarMaterialCard(props) {
 
-    const FILE_URL = 'http://127.0.0.1:8000' + props.similarFileURL;
+    const FILE_URL = baseURL.slice(0, -1) + props.similarFileURL;
     const MATERIAL_URL = `files/course_material/${props.similarFileName}`;
     const fileType = FILE_URL.substring(FILE_URL.length - 3);
 
