@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: 'http://127.0.0.1:8000/'
+    baseURL: 'https://coursedogfcai.westeurope.cloudapp.azure.com/'
 });
 
-export const baseURL = 'http://127.0.0.1:8000/';
+export const baseURL = 'https://coursedogfcai.westeurope.cloudapp.azure.com/';
