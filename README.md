@@ -1,4 +1,4 @@
-# Educational Platform Web App
+# Course Dog
 A full-featured educational web application built with React, offering multi-role access for students, admins, and organizations. The app supports OAuth sign-up, course material management, announcements, and profile handling with verification flows.
 
 ## Features
